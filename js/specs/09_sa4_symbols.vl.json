@@ -1,0 +1,304 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional symbol map: international student enrolments in ABS SA4 regions with at least 1,000 enrolments, 2025. Circle area = enrolments; colour = capital city or regional area.",
+  "width": "container",
+  "height": 470,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -133,
+      0
+    ],
+    "fit": {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.5,
+            -44
+          ],
+          [
+            154,
+            -10.5
+          ],
+          [
+            112.5,
+            -10.5
+          ],
+          [
+            154,
+            -44
+          ]
+        ]
+      },
+      "properties": {}
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/geo/aus-states.topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "aus_states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ECE8E1",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa4_2025.csv",
+        "format": {
+          "parse": {
+            "enrolments": "number",
+            "commencements": "number",
+            "lon": "number",
+            "lat": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.enrolments >= 1000"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.72,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "enrolments",
+          "type": "quantitative",
+          "title": "Enrolments",
+          "scale": {
+            "type": "linear",
+            "zero": true,
+            "domain": [
+              0,
+              240000
+            ],
+            "range": [
+              0,
+              3600
+            ]
+          },
+          "legend": {
+            "values": [
+              10000,
+              50000,
+              100000,
+              200000
+            ],
+            "format": "~s",
+            "orient": "right",
+            "symbolFillColor": "#9CA3AF",
+            "symbolStrokeColor": "#FFFFFF"
+          }
+        },
+        "color": {
+          "field": "area_type",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Capital city",
+              "Regional"
+            ],
+            "range": [
+              "#2F5D8A",
+              "#C9862B"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "symbolOpacity": 0.8
+          }
+        },
+        "order": {
+          "field": "enrolments",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "region",
+            "title": "SA4 region"
+          },
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "area_type",
+            "title": "Area"
+          },
+          {
+            "field": "enrolments",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Enrolments (2025)"
+          },
+          {
+            "field": "commencements",
+            "type": "quantitative",
+            "format": ",",
+            "title": "New enrolments (2025)"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 155.2,
+            "lat": -34.4,
+            "t": "Sydney City & Inner South: 233k",
+            "a": "left"
+          },
+          {
+            "lon": 146.5,
+            "lat": -40.3,
+            "t": "Melbourne Inner: 222k",
+            "a": "left"
+          },
+          {
+            "lon": 155.2,
+            "lat": -27.0,
+            "t": "Brisbane Inner City: 62k",
+            "a": "left"
+          },
+          {
+            "lon": 155.2,
+            "lat": -28.6,
+            "t": "Gold Coast: 34k, largest regional area",
+            "a": "left"
+          },
+          {
+            "lon": 113.6,
+            "lat": -32.0,
+            "t": "Perth Inner: 51k",
+            "a": "right"
+          },
+          {
+            "lon": 137.2,
+            "lat": -36.6,
+            "t": "Adelaide Central & Hills: 49k",
+            "a": "right"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "transform": [
+            {
+              "filter": "datum.a == 'left'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "color": "#1F2937",
+            "align": "left"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.a == 'right'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "color": "#1F2937",
+            "align": "right"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 113.5,
+            "lat": -39.2,
+            "t": "Two inner-city areas hold 43% of all enrolments."
+          },
+          {
+            "lon": 113.5,
+            "lat": -40.6,
+            "t": "Regional Australia hosts under 7%."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#4B5563"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

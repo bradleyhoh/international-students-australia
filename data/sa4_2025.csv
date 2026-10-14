@@ -1,0 +1,86 @@
+state,region,area_type,enrolments,commencements,lon,lat
+ACT,Australian Capital Territory,Capital city,21405,9182,149.0025,-35.4887
+NSW,Capital Region,Regional,8,4,149.245,-35.5648
+NSW,Central Coast,Capital city,670,264,151.2855,-33.308
+NSW,Central West,Regional,434,160,148.3558,-33.217
+NSW,Coffs Harbour - Grafton,Regional,222,113,152.7739,-29.816
+NSW,Far West and Orana,Regional,59,30,145.027,-30.9861
+NSW,Hunter Valley exc Newcastle,Regional,4,4,150.9849,-32.3548
+NSW,Illawarra,Regional,6420,2583,150.7711,-34.4346
+NSW,Mid North Coast,Regional,140,79,152.341,-31.5647
+NSW,Murray,Regional,80,31,144.0434,-34.4227
+NSW,New England and North West,Regional,672,272,150.702,-30.0634
+NSW,Newcastle and Lake Macquarie,Regional,6398,3546,151.5763,-32.9966
+NSW,Richmond - Tweed,Regional,765,335,153.0638,-28.7436
+NSW,Riverina,Regional,182,63,146.7718,-34.6232
+NSW,Southern Highlands and Shoalhaven,Regional,115,71,150.3658,-34.874
+NSW,Sydney - Baulkham Hills and Hawkesbury,Capital city,851,402,150.8289,-33.3685
+NSW,Sydney - Blacktown,Capital city,3561,1523,150.8643,-33.7407
+NSW,Sydney - City and Inner South,Capital city,232920,103156,151.1926,-33.9175
+NSW,Sydney - Eastern Suburbs,Capital city,56930,23982,151.2483,-33.9157
+NSW,Sydney - Inner South West,Capital city,8003,3434,151.0641,-33.9417
+NSW,Sydney - Inner West,Capital city,8147,3414,151.1187,-33.8733
+NSW,Sydney - North Sydney and Hornsby,Capital city,6602,2852,151.16,-33.6941
+NSW,Sydney - Northern Beaches,Capital city,1556,848,151.2497,-33.6902
+NSW,Sydney - Outer South West,Capital city,1399,401,150.6815,-34.1227
+NSW,Sydney - Outer West and Blue Mountains,Capital city,2685,828,150.3805,-33.8741
+NSW,Sydney - Parramatta,Capital city,41499,16584,151.0047,-33.826
+NSW,Sydney - Ryde,Capital city,18613,8745,151.1009,-33.7874
+NSW,Sydney - South West,Capital city,1142,398,150.817,-33.9319
+NSW,Sydney - Sutherland,Capital city,809,228,151.0631,-34.0753
+NT,Darwin,Capital city,5856,2720,131.1071,-12.523
+NT,Northern Territory - Outback,Regional,189,97,133.37,-19.4305
+QLD,Brisbane - East,Capital city,413,220,153.3258,-27.5477
+QLD,Brisbane - North,Capital city,762,414,153.0599,-27.368
+QLD,Brisbane - South,Capital city,9474,4186,153.0695,-27.567
+QLD,Brisbane - West,Capital city,26820,12692,152.9075,-27.4858
+QLD,Brisbane Inner City,Capital city,62268,30047,153.0275,-27.4525
+QLD,Cairns,Regional,2173,1086,145.5092,-17.6267
+QLD,Central Queensland,Regional,330,152,149.3257,-24.1098
+QLD,Darling Downs - Maranoa,Regional,6,4,149.3557,-27.3167
+QLD,Gold Coast,Regional,33683,16421,153.2706,-28.0131
+QLD,Ipswich,Capital city,1402,716,152.5507,-27.6102
+QLD,Logan - Beaudesert,Capital city,1701,1141,152.964,-27.9989
+QLD,Mackay - Isaac - Whitsunday,Regional,57,29,147.9247,-21.7423
+QLD,Moreton Bay - North,Capital city,172,72,152.5814,-26.8702
+QLD,Moreton Bay - South,Capital city,1004,379,152.8598,-27.2693
+QLD,Sunshine Coast,Regional,3312,1909,152.909,-26.589
+QLD,Toowoomba,Regional,2134,811,152.0841,-27.6166
+QLD,Townsville,Regional,1986,855,145.9324,-20.0402
+QLD,Wide Bay,Regional,153,88,151.7863,-25.6255
+SA,Adelaide - Central and Hills,Capital city,49022,22042,138.8375,-34.9713
+SA,Adelaide - South,Capital city,5550,2404,138.5715,-35.1428
+SA,Adelaide - West,Capital city,2083,1019,138.5302,-34.8748
+SA,Barossa - Yorke - Mid North,Regional,41,4,138.4462,-33.6575
+SA,South Australia - South East,Regional,42,29,139.9124,-35.6987
+TAS,Hobart,Capital city,8084,3823,147.4376,-42.8311
+TAS,Launceston and North East,Regional,1335,599,147.4579,-41.3614
+TAS,South East,Regional,38,28,146.8644,-42.6313
+TAS,West and North West,Regional,25,9,145.4795,-41.6293
+VIC,Ballarat,Regional,1408,404,143.7346,-37.3755
+VIC,Bendigo,Regional,526,255,144.0945,-36.6007
+VIC,Geelong,Regional,7188,2808,144.1266,-38.111
+VIC,Hume,Regional,90,25,146.4137,-36.7761
+VIC,Latrobe - Gippsland,Regional,298,121,147.4116,-37.7304
+VIC,Melbourne - Inner,Capital city,221981,102010,144.9645,-37.8001
+VIC,Melbourne - Inner East,Capital city,23597,9386,145.1049,-37.8048
+VIC,Melbourne - Inner South,Capital city,16487,7802,145.0638,-37.9504
+VIC,Melbourne - North East,Capital city,11591,5248,145.1692,-37.5207
+VIC,Melbourne - North West,Capital city,3837,2262,144.7458,-37.4759
+VIC,Melbourne - Outer East,Capital city,425,96,145.5059,-37.7596
+VIC,Melbourne - South East,Capital city,23585,10187,145.4681,-38.0732
+VIC,Melbourne - West,Capital city,7373,3393,144.6249,-37.7765
+VIC,Mornington Peninsula,Capital city,1403,471,145.0564,-38.3103
+VIC,North West,Regional,165,103,142.2378,-35.8681
+VIC,Shepparton,Regional,32,20,145.1678,-36.252
+VIC,Warrnambool and South West,Regional,72,37,142.3823,-37.9744
+WA,Bunbury,Regional,100,64,116.0092,-33.9548
+WA,Mandurah,Capital city,187,63,115.8306,-32.6323
+WA,Perth - Inner,Capital city,50556,24339,115.8099,-31.9562
+WA,Perth - North East,Capital city,1093,645,116.134,-31.8084
+WA,Perth - North West,Capital city,7766,2829,115.7696,-31.6621
+WA,Perth - South East,Capital city,18055,8226,116.0629,-32.2067
+WA,Perth - South West,Capital city,11175,4472,115.8005,-32.2239
+WA,Western Australia - Outback (North),Regional,6,6,123.7217,-20.0415
+WA,Western Australia - Outback (South),Regional,381,158,121.9899,-27.7343
+WA,Western Australia - Wheat Belt,Regional,8,6,117.9185,-32.0672

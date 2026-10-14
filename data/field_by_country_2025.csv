@@ -1,0 +1,132 @@
+country,field,field_short,enrolments,total,share
+Bangladesh,Management and Commerce,Business,5324,25320,21.0
+Vietnam,Management and Commerce,Business,9088,24225,37.5
+Philippines,Management and Commerce,Business,3041,9056,33.6
+Sri Lanka,Health,Health,1407,18213,7.7
+Philippines,Information Technology,IT,1285,9056,14.2
+Pakistan,Natural and Physical Sciences,Science,517,13632,3.8
+Nepal,Education,Education,6568,58945,11.1
+Indonesia,"Agriculture, Environmental and Related Studies",Agriculture & environment,208,15691,1.3
+Vietnam,Engineering and Related Technologies,Engineering,1610,24225,6.6
+Philippines,Engineering and Related Technologies,Engineering,489,9056,5.4
+Indonesia,Information Technology,IT,2138,15691,13.6
+India,Natural and Physical Sciences,Science,5707,101463,5.6
+Sri Lanka,Engineering and Related Technologies,Engineering,3148,18213,17.3
+India,Management and Commerce,Business,28830,101463,28.4
+Pakistan,Engineering and Related Technologies,Engineering,1357,13632,10.0
+Malaysia,Health,Health,981,9513,10.3
+Hong Kong,Creative Arts,Creative arts,584,8795,6.6
+Pakistan,Architecture and Building,Architecture,205,13632,1.5
+Indonesia,Architecture and Building,Architecture,538,15691,3.4
+Malaysia,Information Technology,IT,1139,9513,12.0
+Vietnam,"Agriculture, Environmental and Related Studies",Agriculture & environment,82,24225,0.3
+Pakistan,Creative Arts,Creative arts,78,13632,0.6
+Nepal,"Agriculture, Environmental and Related Studies",Agriculture & environment,398,58945,0.7
+Vietnam,Education,Education,1702,24225,7.0
+Hong Kong,Engineering and Related Technologies,Engineering,518,8795,5.9
+Hong Kong,Society and Culture,Society & culture,899,8795,10.2
+Bangladesh,Engineering and Related Technologies,Engineering,2510,25320,9.9
+Malaysia,"Food, Hospitality and Personal Services",Hospitality,9,9513,0.1
+Bhutan,Society and Culture,Society & culture,2202,12062,18.3
+Sri Lanka,Management and Commerce,Business,4058,18213,22.3
+Vietnam,Creative Arts,Creative arts,1461,24225,6.0
+Philippines,Health,Health,1814,9056,20.0
+Philippines,Education,Education,662,9056,7.3
+Pakistan,Management and Commerce,Business,3348,13632,24.6
+Sri Lanka,Society and Culture,Society & culture,1201,18213,6.6
+Pakistan,"Food, Hospitality and Personal Services",Hospitality,4,13632,0.0
+Nepal,"Food, Hospitality and Personal Services",Hospitality,11,58945,0.0
+Sri Lanka,"Food, Hospitality and Personal Services",Hospitality,9,18213,0.0
+Malaysia,Architecture and Building,Architecture,397,9513,4.2
+Malaysia,Engineering and Related Technologies,Engineering,904,9513,9.5
+Indonesia,Management and Commerce,Business,5243,15691,33.4
+India,Engineering and Related Technologies,Engineering,7398,101463,7.3
+India,Education,Education,4275,101463,4.2
+India,Health,Health,12615,101463,12.4
+Vietnam,Architecture and Building,Architecture,468,24225,1.9
+China,Management and Commerce,Business,57946,168137,34.5
+Malaysia,Society and Culture,Society & culture,936,9513,9.8
+Hong Kong,Information Technology,IT,673,8795,7.7
+Bhutan,Health,Health,1388,12062,11.5
+Nepal,Society and Culture,Society & culture,6089,58945,10.3
+China,Natural and Physical Sciences,Science,11753,168137,7.0
+Bhutan,Education,Education,672,12062,5.6
+China,Society and Culture,Society & culture,22331,168137,13.3
+Malaysia,Education,Education,345,9513,3.6
+Philippines,"Food, Hospitality and Personal Services",Hospitality,7,9056,0.1
+Indonesia,Education,Education,728,15691,4.6
+Bhutan,Engineering and Related Technologies,Engineering,772,12062,6.4
+Hong Kong,"Agriculture, Environmental and Related Studies",Agriculture & environment,92,8795,1.0
+Bangladesh,Architecture and Building,Architecture,282,25320,1.1
+Pakistan,Society and Culture,Society & culture,1699,13632,12.5
+Nepal,Management and Commerce,Business,17816,58945,30.2
+Bangladesh,Natural and Physical Sciences,Science,976,25320,3.9
+Pakistan,Information Technology,IT,4747,13632,34.8
+Nepal,Information Technology,IT,16684,58945,28.3
+Indonesia,Natural and Physical Sciences,Science,1368,15691,8.7
+Philippines,Society and Culture,Society & culture,802,9056,8.9
+Vietnam,"Food, Hospitality and Personal Services",Hospitality,49,24225,0.2
+Hong Kong,"Food, Hospitality and Personal Services",Hospitality,8,8795,0.1
+Bangladesh,"Food, Hospitality and Personal Services",Hospitality,9,25320,0.0
+Bhutan,Information Technology,IT,1275,12062,10.6
+Bangladesh,Health,Health,1062,25320,4.2
+India,Architecture and Building,Architecture,2094,101463,2.1
+China,"Food, Hospitality and Personal Services",Hospitality,187,168137,0.1
+Malaysia,Management and Commerce,Business,2472,9513,26.0
+India,"Agriculture, Environmental and Related Studies",Agriculture & environment,753,101463,0.7
+Sri Lanka,Education,Education,1093,18213,6.0
+Bangladesh,"Agriculture, Environmental and Related Studies",Agriculture & environment,184,25320,0.7
+Bangladesh,Society and Culture,Society & culture,2115,25320,8.4
+Indonesia,Creative Arts,Creative arts,1144,15691,7.3
+Bhutan,Natural and Physical Sciences,Science,181,12062,1.5
+Philippines,Architecture and Building,Architecture,144,9056,1.6
+Bangladesh,Creative Arts,Creative arts,101,25320,0.4
+Philippines,Natural and Physical Sciences,Science,307,9056,3.4
+Nepal,Creative Arts,Creative arts,190,58945,0.3
+Hong Kong,Management and Commerce,Business,1874,8795,21.3
+Malaysia,"Agriculture, Environmental and Related Studies",Agriculture & environment,83,9513,0.9
+India,"Food, Hospitality and Personal Services",Hospitality,27,101463,0.0
+China,Health,Health,5945,168137,3.5
+Philippines,Creative Arts,Creative arts,195,9056,2.2
+Pakistan,Education,Education,510,13632,3.7
+Bhutan,Architecture and Building,Architecture,86,12062,0.7
+India,Information Technology,IT,29083,101463,28.7
+Bhutan,Creative Arts,Creative arts,231,12062,1.9
+Indonesia,Engineering and Related Technologies,Engineering,1330,15691,8.5
+Sri Lanka,Natural and Physical Sciences,Science,1085,18213,6.0
+Sri Lanka,"Agriculture, Environmental and Related Studies",Agriculture & environment,133,18213,0.7
+Philippines,"Agriculture, Environmental and Related Studies",Agriculture & environment,54,9056,0.6
+Malaysia,Creative Arts,Creative arts,504,9513,5.3
+Bhutan,Management and Commerce,Business,4855,12062,40.3
+Nepal,Natural and Physical Sciences,Science,851,58945,1.4
+Bhutan,"Agriculture, Environmental and Related Studies",Agriculture & environment,230,12062,1.9
+India,Creative Arts,Creative arts,1245,101463,1.2
+China,Information Technology,IT,21195,168137,12.6
+Nepal,Engineering and Related Technologies,Engineering,1774,58945,3.0
+Hong Kong,Education,Education,217,8795,2.5
+Malaysia,Natural and Physical Sciences,Science,1136,9513,11.9
+Hong Kong,Architecture and Building,Architecture,376,8795,4.3
+China,Education,Education,9016,168137,5.4
+Sri Lanka,Architecture and Building,Architecture,338,18213,1.9
+India,Society and Culture,Society & culture,6950,101463,6.8
+China,Architecture and Building,Architecture,4679,168137,2.8
+Indonesia,Society and Culture,Society & culture,1735,15691,11.1
+Vietnam,Information Technology,IT,4247,24225,17.5
+China,Creative Arts,Creative arts,13810,168137,8.2
+China,"Agriculture, Environmental and Related Studies",Agriculture & environment,1254,168137,0.7
+Hong Kong,Health,Health,2357,8795,26.8
+Bangladesh,Education,Education,887,25320,3.5
+Nepal,Health,Health,7883,58945,13.4
+Bangladesh,Information Technology,IT,11390,25320,45.0
+Nepal,Architecture and Building,Architecture,366,58945,0.6
+Vietnam,Society and Culture,Society & culture,1725,24225,7.1
+Pakistan,Health,Health,698,13632,5.1
+Vietnam,Natural and Physical Sciences,Science,1128,24225,4.7
+Pakistan,"Agriculture, Environmental and Related Studies",Agriculture & environment,107,13632,0.8
+Sri Lanka,Creative Arts,Creative arts,158,18213,0.9
+China,Engineering and Related Technologies,Engineering,16124,168137,9.6
+Sri Lanka,Information Technology,IT,4835,18213,26.5
+Indonesia,Health,Health,636,15691,4.1
+Hong Kong,Natural and Physical Sciences,Science,568,8795,6.5
+Indonesia,"Food, Hospitality and Personal Services",Hospitality,33,15691,0.2
+Vietnam,Health,Health,1569,24225,6.5

@@ -1,0 +1,275 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth: international students per 1,000 residents in each state and territory, 2025. Standardising by population lets small and large states be compared fairly.",
+  "width": "container",
+  "height": 380,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -133,
+      0
+    ],
+    "fit": {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            112.5,
+            -44
+          ],
+          [
+            159,
+            -10.5
+          ],
+          [
+            112.5,
+            -10.5
+          ],
+          [
+            159,
+            -44
+          ]
+        ]
+      },
+      "properties": {}
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/geo/aus-states.topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "aus_states"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "url": "data/states_2025.csv",
+              "format": {
+                "parse": {
+                  "students": "number",
+                  "erp": "number",
+                  "per_1000": "number"
+                }
+              }
+            },
+            "key": "state_name",
+            "fields": [
+              "state",
+              "students",
+              "erp",
+              "per_1000"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "color": {
+          "field": "per_1000",
+          "type": "quantitative",
+          "title": "International students per 1,000 residents",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              15,
+              20,
+              25,
+              30,
+              35
+            ],
+            "range": [
+              "#DEEBF7",
+              "#C6DBEF",
+              "#9ECAE1",
+              "#6BAED6",
+              "#3182BD",
+              "#08519C"
+            ]
+          },
+          "legend": {
+            "type": "symbol",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 140,
+            "title": "Students per 1,000 residents",
+            "titleOrient": "left",
+            "titleLimit": 200,
+            "labelExpr": "datum.label"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "title": "State / territory"
+          },
+          {
+            "field": "students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "International students"
+          },
+          {
+            "field": "erp",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Residents (ABS, Dec 2025)"
+          },
+          {
+            "field": "per_1000",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Students per 1,000 residents"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/states_2025.csv",
+        "format": {
+          "parse": {
+            "per_1000": "number",
+            "label_lon": "number",
+            "label_lat": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.state != 'ACT'"
+        },
+        {
+          "calculate": "datum.state + ' ' + format(datum.per_1000, '.1f')",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "longitude": {
+          "field": "label_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "label_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.per_1000 >= 30",
+            "value": "#FFFFFF"
+          },
+          "value": "#1F2937"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 149.1,
+            "lat": -35.3,
+            "lon2": 153.3,
+            "lat2": -37.2,
+            "t": "ACT 39.1, highest",
+            "t2": "per resident"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#1F2937",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "lon2"
+            },
+            "latitude2": {
+              "field": "lat2"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 3,
+            "dy": 4,
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#1F2937"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon2",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat2",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 3,
+            "dy": 18,
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "color": "#4B5563"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon2",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat2",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t2"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

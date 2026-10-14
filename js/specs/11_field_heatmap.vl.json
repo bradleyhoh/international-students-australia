@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap: what higher-education students from each source country study in Australia, 2025. Each row is one country; colour = share of that country's higher-education enrolments in each broad field.",
+  "width": "container",
+  "height": 360,
+  "data": {
+    "url": "data/field_by_country_2025.csv",
+    "format": {
+      "parse": {
+        "enrolments": "number",
+        "total": "number",
+        "share": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "field_short",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Business",
+        "IT",
+        "Health",
+        "Engineering",
+        "Society & culture",
+        "Science",
+        "Education",
+        "Creative arts",
+        "Architecture",
+        "Agriculture & environment"
+      ],
+      "axis": {
+        "orient": "top",
+        "labelAngle": -35,
+        "labelAlign": "left",
+        "labelLimit": 170
+      }
+    },
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "total",
+        "op": "max",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontWeight": {
+          "condition": {
+            "test": "datum.value == 'Malaysia'",
+            "value": 700
+          },
+          "value": 400
+        },
+        "labelColor": {
+          "condition": {
+            "test": "datum.value == 'Malaysia'",
+            "value": "#B3202E"
+          },
+          "value": "#374151"
+        }
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "share",
+          "type": "quantitative",
+          "title": "% of the country's higher-education enrolments",
+          "scale": {
+            "scheme": "blues",
+            "domain": [
+              0,
+              50
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 240,
+            "titleLimit": 360
+          }
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "field",
+            "title": "Broad field of education"
+          },
+          {
+            "field": "enrolments",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Enrolments"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "% of country's HE enrolments"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11
+      },
+      "encoding": {
+        "text": {
+          "field": "share",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.share >= 30",
+            "value": "#FFFFFF"
+          },
+          "value": "#1F2937"
+        }
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.field_short != 'Hospitality'"
+    }
+  ]
+}

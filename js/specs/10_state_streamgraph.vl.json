@@ -1,0 +1,291 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Streamgraph: international students by the state or territory where they study, 2005-2025. The overall thickness is the national total; each band is one state.",
+  "width": "container",
+  "height": 340,
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "start": 2020,
+            "end": 2022
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "color": "#E5E7EB",
+        "opacity": 0.6
+      },
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "x2": {
+          "field": "end"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.5
+      },
+      "params": [
+        {
+          "name": "pick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "state"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              2005,
+              2025
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": {
+            "format": "d",
+            "values": [
+              2005,
+              2010,
+              2015,
+              2020,
+              2025
+            ],
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "zero": false
+          }
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "title": "State / territory",
+          "sort": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "WA",
+            "SA",
+            "ACT",
+            "TAS",
+            "NT"
+          ],
+          "scale": {
+            "domain": [
+              "NSW",
+              "VIC",
+              "QLD",
+              "WA",
+              "SA",
+              "ACT",
+              "TAS",
+              "NT"
+            ],
+            "range": [
+              "#2F5D8A",
+              "#5B8DB8",
+              "#C9862B",
+              "#5FA39B",
+              "#8D78B6",
+              "#D9A5A0",
+              "#9CA3AF",
+              "#6B7280"
+            ]
+          },
+          "legend": {
+            "orient": "right"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "pick",
+            "value": 1
+          },
+          "value": 0.2
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "format": "d",
+            "title": "Year"
+          },
+          {
+            "field": "students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Students"
+          }
+        ],
+        "y2": {
+          "field": "y1"
+        }
+      },
+      "data": {
+        "url": "data/state_trend.csv",
+        "format": {
+          "parse": {
+            "year": "number",
+            "students": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "indexof(['NSW','VIC','QLD','WA','SA','ACT','TAS','NT'], datum.state)",
+          "as": "state_order"
+        },
+        {
+          "stack": "students",
+          "groupby": [
+            "year"
+          ],
+          "sort": [
+            {
+              "field": "state_order",
+              "order": "descending"
+            }
+          ],
+          "offset": "center",
+          "as": [
+            "y0",
+            "y1"
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2021,
+            "t": "Borders closed"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#4B5563",
+        "align": "center",
+        "baseline": "top",
+        "y": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_trend.csv",
+        "format": {
+          "parse": {
+            "year": "number",
+            "students": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "indexof(['NSW','VIC','QLD','WA','SA','ACT','TAS','NT'], datum.state)",
+          "as": "state_order"
+        },
+        {
+          "stack": "students",
+          "groupby": [
+            "year"
+          ],
+          "sort": [
+            {
+              "field": "state_order",
+              "order": "descending"
+            }
+          ],
+          "offset": "center",
+          "as": [
+            "y0",
+            "y1"
+          ]
+        },
+        {
+          "filter": "datum.state == 'WA' && datum.year == 2025"
+        },
+        {
+          "calculate": "(datum.y0 + datum.y1) / 2",
+          "as": "mid"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#FFFFFF",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -6
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "mid",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "WA: 33k → 73k"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

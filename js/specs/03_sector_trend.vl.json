@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Small multiples: enrolments by education sector, 2018-2025, each on its own scale.",
+  "data": {
+    "url": "data/sector_trend.csv"
+  },
+  "facet": {
+    "field": "sector",
+    "type": "nominal",
+    "title": null,
+    "sort": [
+      "Higher Education",
+      "VET",
+      "ELICOS",
+      "Non-award",
+      "Schools"
+    ],
+    "header": {
+      "labelFontSize": 13,
+      "labelFontWeight": 600,
+      "labelAnchor": "start",
+      "labelColor": "#1F2A37"
+    }
+  },
+  "columns": 5,
+  "spec": {
+    "width": 140,
+    "height": 120,
+    "layer": [
+      {
+        "data": {
+          "values": [
+            {
+              "start": 2020,
+              "end": 2022
+            }
+          ]
+        },
+        "mark": {
+          "type": "rect",
+          "color": "#E8E6E1",
+          "opacity": 0.7
+        },
+        "encoding": {
+          "x": {
+            "field": "start",
+            "type": "quantitative",
+            "scale": {
+              "zero": false
+            }
+          },
+          "x2": {
+            "field": "end"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "color": "#2F5D8A",
+          "strokeWidth": 2,
+          "point": {
+            "filled": true,
+            "size": 25,
+            "color": "#2F5D8A"
+          }
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative",
+            "title": null,
+            "scale": {
+              "domain": [
+                2018,
+                2025
+              ],
+              "zero": false
+            },
+            "axis": {
+              "format": "d",
+              "values": [
+                2018,
+                2021,
+                2025
+              ],
+              "grid": false
+            }
+          },
+          "y": {
+            "field": "enrolments",
+            "type": "quantitative",
+            "title": null,
+            "scale": {
+              "zero": true
+            },
+            "axis": {
+              "format": "~s",
+              "tickCount": 3
+            }
+          },
+          "tooltip": [
+            {
+              "field": "sector",
+              "title": "Sector"
+            },
+            {
+              "field": "year",
+              "type": "quantitative",
+              "format": "d",
+              "title": "Year"
+            },
+            {
+              "field": "enrolments",
+              "type": "quantitative",
+              "format": ",",
+              "title": "Enrolments"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  }
+}

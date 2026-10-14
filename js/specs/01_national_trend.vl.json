@@ -1,0 +1,416 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "International students in Australia, 2005-2025 (December head count) with new students and annotated turning points.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/national_trend.csv"
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "start": 2020,
+            "end": 2022,
+            "label": "Borders closed"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "color": "#E8E6E1",
+        "opacity": 0.7
+      },
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "x2": {
+          "field": "end"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2021,
+            "label": "Borders closed"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "y": 8,
+        "fontSize": 12,
+        "color": "#6B7280",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "area",
+        "color": "#2F5D8A",
+        "opacity": 0.18,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "axis": {
+            "format": "d",
+            "values": [
+              2005,
+              2007,
+              2009,
+              2011,
+              2013,
+              2015,
+              2017,
+              2019,
+              2021,
+              2023,
+              2025
+            ],
+            "grid": false
+          },
+          "scale": {
+            "zero": false,
+            "nice": false,
+            "domain": [
+              2005,
+              2025
+            ]
+          }
+        },
+        "y": {
+          "field": "students",
+          "type": "quantitative",
+          "title": "Students",
+          "axis": {
+            "format": "~s",
+            "tickCount": 5
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#2F5D8A",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "students",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#C9862B",
+        "strokeWidth": 2,
+        "strokeDash": [
+          5,
+          3
+        ],
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "new_students",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "fields": [
+              "year"
+            ],
+            "nearest": true,
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#9CA3AF"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "quantitative",
+            "format": "d",
+            "title": "Year"
+          },
+          {
+            "field": "students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "All students"
+          },
+          {
+            "field": "new_students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "New students"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2009,
+            "students": 492044,
+            "label": "2009: 492k, then a three-year slide"
+          },
+          {
+            "year": 2019,
+            "students": 756733,
+            "label": "2019: 757k before COVID-19"
+          },
+          {
+            "year": 2021,
+            "students": 572264,
+            "label": "2021: down to 572k"
+          },
+          {
+            "year": 2024,
+            "students": 850837,
+            "label": "2024: record 851k"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "color": "#1F2A37",
+            "size": 40
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "students",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.year == 2009"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "dx": 0,
+            "dy": -14,
+            "fontSize": 12,
+            "color": "#1F2A37",
+            "fontWeight": 500
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "students",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.year == 2019"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -8,
+            "dy": -8,
+            "fontSize": 12,
+            "color": "#1F2A37",
+            "fontWeight": 500
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "students",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.year == 2021"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 8,
+            "dy": 14,
+            "fontSize": 12,
+            "color": "#1F2A37",
+            "fontWeight": 500
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "students",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.year == 2024"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -8,
+            "dy": -6,
+            "fontSize": 12,
+            "color": "#1F2A37",
+            "fontWeight": 500
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "students",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2010.2,
+            "v": 112000,
+            "label": "New students that year"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "color": "#9A6416",
+        "fontSize": 12,
+        "align": "left",
+        "dy": 18
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ]
+}

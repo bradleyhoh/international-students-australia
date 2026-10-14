@@ -1,0 +1,281 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Slope chart: each country's share of all international students in Australia, 2015 vs 2025. Log scale, so equal slopes mean equal percentage change.",
+  "width": "container",
+  "height": 420,
+  "data": {
+    "url": "data/slope_share.csv",
+    "format": {
+      "parse": {
+        "year": "number",
+        "students": "number",
+        "share": "number",
+        "label_y": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "argmin",
+          "field": "year",
+          "as": "first"
+        },
+        {
+          "op": "argmax",
+          "field": "year",
+          "as": "last"
+        }
+      ],
+      "groupby": [
+        "country"
+      ]
+    },
+    {
+      "calculate": "datum.last.share / datum.first.share",
+      "as": "ratio"
+    },
+    {
+      "calculate": "datum.country == 'Malaysia' ? 'Malaysia' : (datum.ratio >= 1 ? 'Larger share in 2025' : 'Smaller share in 2025')",
+      "as": "trend"
+    },
+    {
+      "calculate": "datum.year == 2015 ? datum.country + '  ' + format(datum.share, '.1f') + '%' : format(datum.share, '.1f') + '%  ' + datum.country",
+      "as": "label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          2008.5,
+          2031.5
+        ],
+        "zero": false,
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          2015,
+          2025
+        ],
+        "format": "d",
+        "title": null,
+        "orient": "top",
+        "domain": false,
+        "ticks": false,
+        "grid": false,
+        "labelFontSize": 13,
+        "labelFontWeight": 700,
+        "labelPadding": 8
+      }
+    },
+    "color": {
+      "field": "trend",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": [
+          "Malaysia",
+          "Larger share in 2025",
+          "Smaller share in 2025"
+        ],
+        "range": [
+          "#B3202E",
+          "#2F5D8A",
+          "#8A919C"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "labelLimit": 220,
+        "columns": 2
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5
+      },
+      "encoding": {
+        "y": {
+          "field": "share",
+          "type": "quantitative",
+          "scale": {
+            "type": "log",
+            "domain": [
+              0.9,
+              30
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "country"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.country == 'Malaysia'",
+            "value": 4
+          },
+          "value": 2.2
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 55,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "share",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "format": "d",
+            "title": "Year"
+          },
+          {
+            "field": "students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Students"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "% of all international students"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2015"
+        },
+        {
+          "filter": "datum.country != 'Malaysia'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "baseline": "middle",
+        "fontSize": 12
+      },
+      "encoding": {
+        "y": {
+          "field": "label_y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2015"
+        },
+        {
+          "filter": "datum.country == 'Malaysia'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "label_y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        },
+        {
+          "filter": "datum.country != 'Malaysia'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "baseline": "middle",
+        "fontSize": 12
+      },
+      "encoding": {
+        "y": {
+          "field": "label_y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        },
+        {
+          "filter": "datum.country == 'Malaysia'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "label_y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Destination Australia: International Students, 2005–2025</title>
+  <meta name="description" content="A data visualisation of international students in Australia from 2005 to 2025, told for a Malaysian audience.">
+  <meta name="author" content="Brendan Hoh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">FIT3179 Data Visualisation 2 · International education</p>
+    <h1>Destination Australia</h1>
+    <p class="dek">Twenty years of international students in Australia: who comes, where they study, what they study, and why Malaysia, once a top-four source country, has slipped to 13th.</p>
+    <div class="stats">
+      <div class="stat"><span class="num">844,299</span><span class="lbl">international students in Australia, Dec 2025</span></div>
+      <div class="stat"><span class="num">190+</span><span class="lbl">nationalities represented</span></div>
+      <div class="stat malaysia"><span class="num">14,895</span><span class="lbl">Malaysians studying in Australia, 13th largest source</span></div>
+    </div>
+    <p class="meta">By Brendan Hoh · Monash University Malaysia · October 2026 · Data to December 2025</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#growth">1. Growth</a>
+    <a href="#origins">2. Origins</a>
+    <a href="#arrivals">3. Arrivals</a>
+    <a href="#places">4. Where in Australia</a>
+    <a href="#fields">5. What they study</a>
+    <a href="#about">Sources</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===== Section 1 ===== -->
+  <section id="growth" class="wrap">
+    <p class="section-no">1</p>
+    <h2>Almost three times as many students as in 2005</h2>
+    <p class="lede">In 2005 Australia hosted about 289,000 international students. By 2024 it had a record 851,000. The climb was not smooth: a slide after 2009, a long boom in the 2010s, and a sharp fall when Australia closed its borders during COVID-19.</p>
+
+    <figure class="card">
+      <figcaption>
+        <h3>International students in Australia, 2005–2025</h3>
+        <p>Students counted once each in December. The <span class="c-ochre">dashed ochre line</span> shows students who started their first course that year. Hover for values.</p>
+      </figcaption>
+      <div id="vis01" class="vis"></div>
+      <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
+    </figure>
+
+    <div class="note">
+      <p><strong>Students or enrolments?</strong> A <em>student</em> is one person. An <em>enrolment</em> is one course. One student can hold several enrolments, for example an English course followed by a degree. So enrolment totals (about 1.05 million in 2025) are higher than student totals (844,000). Each chart says which one it counts.</p>
+    </div>
+
+    <div class="grid-2">
+      <figure class="card">
+        <figcaption>
+          <h3>Out of every 100 enrolments in 2025…</h3>
+          <p>Each square is 1% of international enrolments, by education sector.</p>
+        </figcaption>
+        <div id="vis02" class="vis vis-centre"></div>
+        <p class="source">Source: Department of Education, enrolments by sector, December 2025.</p>
+      </figure>
+      <div class="side-text">
+        <p>Just over half of international enrolments are at universities (<span class="c-blue">Higher Education</span>). About a third are vocational courses (<span class="c-ochre">VET</span>).</p>
+        <p>English-language courses (<span class="c-teal">ELICOS</span>) are a smaller slice, but they swing the most. They are usually the first course a student takes, so they react first when borders or visa settings change.</p>
+      </div>
+    </div>
+
+    <figure class="card">
+      <figcaption>
+        <h3>Enrolments by sector, 2018–2025</h3>
+        <p>Each panel has its own scale so the shape of every line can be seen. Shaded years: borders closed.</p>
+      </figcaption>
+      <div id="vis03" class="vis"></div>
+      <p class="source">Source: Department of Education, enrolments by sector, December 2018–2025.</p>
+    </figure>
+  </section>
+
+  <!-- ===== Section 2 ===== -->
+  <section id="origins" class="wrap">
+    <p class="section-no">2</p>
+    <h2>From East Asia to South Asia</h2>
+    <p class="lede">China has been the largest source every year since 2005. What changed is who comes next: India, Nepal, Vietnam and the Philippines now follow it. Malaysia, a top-five source every year from 2005 to 2018, has fallen to 13th.</p>
+
+    <figure class="card">
+      <figcaption>
+        <h3>Where Australia's international students come from</h3>
+        <p>Curved lines run from the 30 largest source countries to Australia; thicker lines carry more students. Drag the slider to replay 2005–2025. <span class="c-my">Malaysia is in red.</span></p>
+      </figcaption>
+      <div id="vis04" class="vis"></div>
+      <p class="source">Source: Department of Education, International Student Data; country positions from Natural Earth.</p>
+    </figure>
+
+    <div class="grid-2">
+      <figure class="card">
+        <figcaption>
+          <h3>Share of all international students, 2015 vs 2025</h3>
+          <p>Log scale: lines with the same slope changed by the same percentage.</p>
+        </figcaption>
+        <div id="vis12" class="vis"></div>
+        <p class="source">Source: Department of Education, International Student Data, December 2015 and 2025.</p>
+      </figure>
+      <div class="side-text">
+        <p>In ten years India's share rose from 11% to 17%, and Nepal's almost tripled, from 3% to 8%. The Philippines and Bangladesh grew just as fast from a smaller base.</p>
+        <p class="malaysia-callout"><span class="c-my">Malaysia's</span> share fell by more than half, from 4.1% to 1.8%, even though Australia as a whole grew. South Korea followed the same path.</p>
+      </div>
+    </div>
+
+    <figure class="card">
+      <figcaption>
+        <h3>Rank among source countries, 2005–2025</h3>
+        <p>1 = largest source. Today's top 10 and <span class="c-my">Malaysia</span>. Hover a line to follow a country.</p>
+      </figcaption>
+      <div id="vis06" class="vis"></div>
+      <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
+    </figure>
+
+    <figure class="card">
+      <figcaption>
+        <h3>Relative to home population, small countries stand out</h3>
+        <p>Students in Australia per 100,000 residents of each home country, 2025. Darker = a larger share of that country's population is studying in Australia. Grey = destination or no data. <span class="c-my">Malaysia is outlined in red.</span></p>
+      </figcaption>
+      <div id="vis05" class="vis"></div>
+      <p class="source">Sources: Department of Education (students, December 2025); World Bank (population, 2025); Natural Earth (boundaries).</p>
+    </figure>
+
+    <div class="note callout-my">
+      <p>Raw totals favour big countries. Dividing by population tells a different story: Bhutan sends 1,635 students per 100,000 people, about 40 times Malaysia's rate. For <span class="c-my">Malaysia</span>, about <strong>41 people in every 100,000</strong> are studying in Australia: above Indonesia (9) and India (10), but far below Singapore (113) and Nepal (237).</p>
+    </div>
+  </section>
+
+  <!-- ===== Section 3 ===== -->
+  <section id="arrivals" class="wrap">
+    <p class="section-no">3</p>
+    <h2>New arrivals have peaked for most countries</h2>
+    <p class="lede">New-student numbers show where the pipeline is heading. After a rebound in 2023, new arrivals fell in 2024 and 2025 for most large source countries. Malaysia's intake peaked earlier, in 2017, and is now at about 38% of that level.</p>
+
+    <figure class="card">
+      <figcaption>
+        <h3>New students each year, as % of each country's best year</h3>
+        <p>Rows are the 12 largest source countries plus <span class="c-my">Malaysia</span>, ordered by size. Comparing each country with its own peak lets small and large countries share one colour scale.</p>
+      </figcaption>
+      <div id="vis07" class="vis"></div>
+      <p class="source">Source: Department of Education, International Student Data (new students), December 2005–2025.</p>
+    </figure>
+  </section>
+
+  <!-- ===== Section 4 ===== -->
+  <section id="places" class="wrap">
+    <p class="section-no">4</p>
+    <h2>Two inner cities hold four in ten enrolments</h2>
+    <p class="lede">New South Wales and Victoria have hosted about two-thirds of international students for twenty years. Within them, students cluster in a handful of inner-city areas.</p>
+
+    <div class="grid-2">
+      <figure class="card">
+        <figcaption>
+          <h3>Students per 1,000 residents, 2025</h3>
+          <p>By state or territory of study.</p>
+        </figcaption>
+        <div id="vis08" class="vis"></div>
+        <p class="source">Sources: Department of Education (students, December 2025); ABS (population, December 2025; ASGS boundaries).</p>
+      </figure>
+      <div class="side-text">
+        <p>New South Wales has the most international students (324,000), but per resident the Australian Capital Territory leads, with 39 international students for every 1,000 residents.</p>
+        <p>Victoria and NSW are close behind. Tasmania has the lowest rate, about 14 per 1,000, and its numbers have almost halved since 2019.</p>
+      </div>
+    </div>
+
+    <figure class="card">
+      <figcaption>
+        <h3>Enrolments by region (ABS SA4), 2025</h3>
+        <p>Each circle is one statistical region with at least 1,000 enrolments (47 regions); circle area = enrolments. <span class="c-blue">Blue = capital city</span>; <span class="c-ochre">ochre = regional</span>. The 38 smaller regions hold under 1% of enrolments.</p>
+      </figcaption>
+      <div id="vis09" class="vis"></div>
+      <p class="source">Sources: Department of Education (enrolments by SA4, December 2025); ABS ASGS 2021 (SA4 regions).</p>
+    </figure>
+
+    <figure class="card">
+      <figcaption>
+        <h3>Students by state of study, 2005–2025</h3>
+        <p>Total thickness = all international students. Click a state in the legend to highlight it. Western Australia more than doubled between 2021 and 2025, from 33,000 to 73,000 students.</p>
+      </figcaption>
+      <div id="vis10" class="vis"></div>
+      <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
+    </figure>
+  </section>
+
+  <!-- ===== Section 5 ===== -->
+  <section id="fields" class="wrap">
+    <p class="section-no">5</p>
+    <h2>What they study depends on where they come from</h2>
+    <p class="lede">Most Chinese and Bangladeshi students are at university. Most Filipino, Colombian and Brazilian students take vocational or English courses. Malaysians sit in between: just over half at university and almost 40% in vocational courses.</p>
+
+    <figure class="card">
+      <figcaption>
+        <h3>Education sector by country, 2025</h3>
+        <p>Column width = the country's total enrolments; segments = share of those enrolments in each sector. Numbers are percentages. The 10 largest source countries plus <span class="c-my">Malaysia</span>.</p>
+      </figcaption>
+      <div id="vis13" class="vis"></div>
+      <p class="source">Source: Department of Education, enrolments by nationality and sector, December 2025.</p>
+    </figure>
+
+    <figure class="card">
+      <figcaption>
+        <h3>Field of study by country, universities, 2025</h3>
+        <p>Numbers are % of each country's university enrolments. Rows add up to roughly 100% (mixed-field courses and the very small hospitality field are left out). Malaysians have the most even spread: business first (26%), then IT, science, health and society and culture at around 10–12% each.</p>
+      </figcaption>
+      <div id="vis11" class="vis"></div>
+      <p class="source">Source: Department of Education, higher-education enrolments by nationality and broad field, December 2025.</p>
+    </figure>
+  </section>
+
+  <!-- ===== Takeaways ===== -->
+  <section class="wrap takeaways">
+    <h2>What this means for Malaysians</h2>
+    <ol>
+      <li><strong>Australia is busier than ever,</strong> but fewer Malaysians are choosing it. Malaysia was a top-five source every year from 2005 to 2018 and is 13th today; its share has more than halved since 2015.</li>
+      <li><strong>Competition comes from South Asia.</strong> Since 2015, students from Bangladesh, Nepal and the Philippines have grown more than fourfold. Malaysians now study alongside a very different mix of classmates than a decade ago.</li>
+      <li><strong>Where you study matters.</strong> Most international students are in inner Sydney and inner Melbourne; regional areas host under 7% of enrolments.</li>
+      <li><strong>Malaysians are generalists.</strong> They split between university and vocational courses, and at university their field mix is the most even of the 12 countries shown.</li>
+    </ol>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about" class="wrap about">
+    <h2>About this visualisation</h2>
+    <div class="grid-2 about-grid">
+      <div>
+        <h3>Data sources</h3>
+        <ul>
+          <li>Australian Government Department of Education, <em>International Student Data</em>: student counts and new students by nationality and state (2005–2025); enrolments by sector, field of education and SA4 region (December 2025). Accessed October 2026.</li>
+          <li>Australian Bureau of Statistics, <em>National, state and territory population</em>, estimated resident population, December quarter 2025.</li>
+          <li>World Bank, <em>World Development Indicators</em>, population, total (SP.POP.TOTL), 2025.</li>
+          <li>Natural Earth via the <code>world-atlas</code> package (country boundaries, 1:110m); ABS ASGS 2021 state and territory boundaries (simplified with mapshaper) and SA4 regions.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Method notes</h3>
+        <ul>
+          <li>“Students” are a December head count of unique students. “Enrolments” count courses and are higher.</li>
+          <li>Rates are students per 100,000 home-country residents (world map) and per 1,000 state residents (Australia map).</li>
+          <li>Three very small territories with no map shape in Natural Earth 1:110m are left off the world maps but kept in the totals.</li>
+          <li>Map projections: Equal Earth (world, centred on the Pacific) and Albers conic equal-area (Australia), so area comparisons are fair.</li>
+          <li>Flow lines are curved and thin flows are drawn above thick ones to reduce overlaps, following Jenny et al. (2018), <em>Design principles for origin-destination flow maps</em>.</li>
+        </ul>
+        <h3>Credits</h3>
+        <p>Author: Brendan Hoh. Built with Vega-Lite 5. Published October 2026.</p>
+        <p class="ai-note"><strong>AI acknowledgement:</strong> Generative AI (Claude, Anthropic) was used to help locate and process the data, write the Vega-Lite specifications and page code, and draft the text. The author checked the figures against the sources and is responsible for the final design and wording.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">FIT3179 Data Visualisation 2 · Brendan Hoh · October 2026</div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

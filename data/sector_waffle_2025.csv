@@ -1,0 +1,101 @@
+cell,col,row,sector,sector_share,sector_enrolments
+0,0,0,Higher Education,51.6,542879
+1,1,0,Higher Education,51.6,542879
+2,2,0,Higher Education,51.6,542879
+3,3,0,Higher Education,51.6,542879
+4,4,0,Higher Education,51.6,542879
+5,5,0,Higher Education,51.6,542879
+6,6,0,Higher Education,51.6,542879
+7,7,0,Higher Education,51.6,542879
+8,8,0,Higher Education,51.6,542879
+9,9,0,Higher Education,51.6,542879
+10,0,1,Higher Education,51.6,542879
+11,1,1,Higher Education,51.6,542879
+12,2,1,Higher Education,51.6,542879
+13,3,1,Higher Education,51.6,542879
+14,4,1,Higher Education,51.6,542879
+15,5,1,Higher Education,51.6,542879
+16,6,1,Higher Education,51.6,542879
+17,7,1,Higher Education,51.6,542879
+18,8,1,Higher Education,51.6,542879
+19,9,1,Higher Education,51.6,542879
+20,0,2,Higher Education,51.6,542879
+21,1,2,Higher Education,51.6,542879
+22,2,2,Higher Education,51.6,542879
+23,3,2,Higher Education,51.6,542879
+24,4,2,Higher Education,51.6,542879
+25,5,2,Higher Education,51.6,542879
+26,6,2,Higher Education,51.6,542879
+27,7,2,Higher Education,51.6,542879
+28,8,2,Higher Education,51.6,542879
+29,9,2,Higher Education,51.6,542879
+30,0,3,Higher Education,51.6,542879
+31,1,3,Higher Education,51.6,542879
+32,2,3,Higher Education,51.6,542879
+33,3,3,Higher Education,51.6,542879
+34,4,3,Higher Education,51.6,542879
+35,5,3,Higher Education,51.6,542879
+36,6,3,Higher Education,51.6,542879
+37,7,3,Higher Education,51.6,542879
+38,8,3,Higher Education,51.6,542879
+39,9,3,Higher Education,51.6,542879
+40,0,4,Higher Education,51.6,542879
+41,1,4,Higher Education,51.6,542879
+42,2,4,Higher Education,51.6,542879
+43,3,4,Higher Education,51.6,542879
+44,4,4,Higher Education,51.6,542879
+45,5,4,Higher Education,51.6,542879
+46,6,4,Higher Education,51.6,542879
+47,7,4,Higher Education,51.6,542879
+48,8,4,Higher Education,51.6,542879
+49,9,4,Higher Education,51.6,542879
+50,0,5,Higher Education,51.6,542879
+51,1,5,Higher Education,51.6,542879
+52,2,5,VET,34.2,360200
+53,3,5,VET,34.2,360200
+54,4,5,VET,34.2,360200
+55,5,5,VET,34.2,360200
+56,6,5,VET,34.2,360200
+57,7,5,VET,34.2,360200
+58,8,5,VET,34.2,360200
+59,9,5,VET,34.2,360200
+60,0,6,VET,34.2,360200
+61,1,6,VET,34.2,360200
+62,2,6,VET,34.2,360200
+63,3,6,VET,34.2,360200
+64,4,6,VET,34.2,360200
+65,5,6,VET,34.2,360200
+66,6,6,VET,34.2,360200
+67,7,6,VET,34.2,360200
+68,8,6,VET,34.2,360200
+69,9,6,VET,34.2,360200
+70,0,7,VET,34.2,360200
+71,1,7,VET,34.2,360200
+72,2,7,VET,34.2,360200
+73,3,7,VET,34.2,360200
+74,4,7,VET,34.2,360200
+75,5,7,VET,34.2,360200
+76,6,7,VET,34.2,360200
+77,7,7,VET,34.2,360200
+78,8,7,VET,34.2,360200
+79,9,7,VET,34.2,360200
+80,0,8,VET,34.2,360200
+81,1,8,VET,34.2,360200
+82,2,8,VET,34.2,360200
+83,3,8,VET,34.2,360200
+84,4,8,VET,34.2,360200
+85,5,8,VET,34.2,360200
+86,6,8,ELICOS,9.1,95524
+87,7,8,ELICOS,9.1,95524
+88,8,8,ELICOS,9.1,95524
+89,9,8,ELICOS,9.1,95524
+90,0,9,ELICOS,9.1,95524
+91,1,9,ELICOS,9.1,95524
+92,2,9,ELICOS,9.1,95524
+93,3,9,ELICOS,9.1,95524
+94,4,9,ELICOS,9.1,95524
+95,5,9,Non-award,3.1,32943
+96,6,9,Non-award,3.1,32943
+97,7,9,Non-award,3.1,32943
+98,8,9,Schools,1.9,20313
+99,9,9,Schools,1.9,20313

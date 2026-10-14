@@ -1,0 +1,234 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart: rank of today's ten largest source countries (plus Malaysia) among all source countries, 2005-2025. Hover a line to highlight it.",
+  "width": "container",
+  "height": 380,
+  "data": {
+    "url": "data/rank_trend.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.country == 'Malaysia'",
+      "as": "is_my"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          2005,
+          2028
+        ],
+        "zero": false
+      },
+      "axis": {
+        "format": "d",
+        "values": [
+          2005,
+          2009,
+          2013,
+          2017,
+          2021,
+          2025
+        ],
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Rank (1 = most students)",
+      "scale": {
+        "reverse": true,
+        "domain": [
+          1,
+          34
+        ],
+        "zero": false,
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          1,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30
+        ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "pick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "country"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone",
+        "point": {
+          "filled": true,
+          "size": 28
+        }
+      },
+      "encoding": {
+        "detail": {
+          "field": "country"
+        },
+        "color": {
+          "condition": [
+            {
+              "test": "datum.is_my",
+              "value": "#B3202E"
+            },
+            {
+              "param": "pick",
+              "empty": false,
+              "value": "#2F5D8A"
+            }
+          ],
+          "value": "#C8CDD3"
+        },
+        "opacity": {
+          "condition": {
+            "param": "pick",
+            "empty": true,
+            "value": 1
+          },
+          "value": 0.35
+        },
+        "order": {
+          "field": "is_my",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "format": "d",
+            "title": "Year"
+          },
+          {
+            "field": "rank",
+            "type": "quantitative",
+            "title": "Rank"
+          },
+          {
+            "field": "students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Students"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        },
+        {
+          "filter": "!datum.is_my"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": 500
+      },
+      "encoding": {
+        "text": {
+          "field": "country"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.is_my",
+            "value": "#B3202E"
+          },
+          "value": "#374151"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        },
+        {
+          "filter": "datum.is_my"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "text": {
+          "field": "country"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.is_my",
+            "value": "#B3202E"
+          },
+          "value": "#374151"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2005,
+            "rank": 31,
+            "label": "Nepal was 31st in 2005 and is 3rd today"
+          },
+          {
+            "year": 2005,
+            "rank": 4,
+            "label": "Malaysia was 4th in 2005 and is 13th today"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -10,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#4B5563"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ]
+}

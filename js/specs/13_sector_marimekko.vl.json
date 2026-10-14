@@ -1,0 +1,334 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Marimekko (mosaic) chart: enrolments by education sector for the 10 largest source countries plus Malaysia, December 2025. Column width = a country's total enrolments; segment height = share of that country's enrolments in each sector.",
+  "width": "container",
+  "height": 380,
+  "data": {
+    "url": "data/sector_by_country_2025.csv",
+    "format": {
+      "parse": {
+        "enrolments": "number",
+        "country_total": "number",
+        "share": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "indexof(['Higher Education','VET','ELICOS','Non-award','Schools'], datum.sector)",
+      "as": "sector_order"
+    },
+    {
+      "stack": "enrolments",
+      "groupby": [],
+      "offset": "normalize",
+      "sort": [
+        {
+          "field": "country_total",
+          "order": "descending"
+        },
+        {
+          "field": "sector_order",
+          "order": "ascending"
+        }
+      ],
+      "as": [
+        "s0",
+        "s1"
+      ]
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "min",
+          "field": "s0",
+          "as": "x0"
+        },
+        {
+          "op": "max",
+          "field": "s1",
+          "as": "x1"
+        }
+      ],
+      "groupby": [
+        "country"
+      ]
+    },
+    {
+      "stack": "enrolments",
+      "groupby": [
+        "country"
+      ],
+      "offset": "normalize",
+      "sort": [
+        {
+          "field": "sector_order",
+          "order": "ascending"
+        }
+      ],
+      "as": [
+        "y0",
+        "y1"
+      ]
+    },
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "xmid"
+    },
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "ymid"
+    },
+    {
+      "calculate": "datum.x1 - datum.x0",
+      "as": "col_width"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "x0",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          1
+        ],
+        "nice": false,
+        "zero": true
+      },
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ],
+            "nice": false
+          },
+          "axis": {
+            "format": "%",
+            "values": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "title": "Share of the country's enrolments",
+            "grid": false
+          }
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "sector",
+          "type": "nominal",
+          "title": null,
+          "sort": [
+            "Higher Education",
+            "VET",
+            "ELICOS",
+            "Non-award",
+            "Schools"
+          ],
+          "scale": {
+            "domain": [
+              "Higher Education",
+              "VET",
+              "ELICOS",
+              "Non-award",
+              "Schools"
+            ],
+            "range": [
+              "#2F5D8A",
+              "#C9862B",
+              "#5FA39B",
+              "#8D78B6",
+              "#9CA3AF"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "sector",
+            "title": "Sector"
+          },
+          {
+            "field": "enrolments",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Enrolments"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "% of country's enrolments"
+          },
+          {
+            "field": "country_total",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Country total"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.share >= 9 && datum.col_width >= 0.035"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#FFFFFF",
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "xmid",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "ymid",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "share",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.sector == 'Higher Education'"
+        },
+        {
+          "filter": "datum.country != 'Malaysia'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "angle": 315,
+        "dx": -2,
+        "dy": 10,
+        "fontSize": 12,
+        "y": {
+          "expr": "height"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "xmid",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "country"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.country == 'Malaysia'",
+            "value": "#B3202E"
+          },
+          "value": "#374151"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.sector == 'Higher Education'"
+        },
+        {
+          "filter": "datum.country == 'Malaysia'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "angle": 315,
+        "dx": -2,
+        "dy": 10,
+        "fontSize": 12,
+        "y": {
+          "expr": "height"
+        },
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "xmid",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "country"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.country == 'Malaysia'",
+            "value": "#B3202E"
+          },
+          "value": "#374151"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.country == 'Malaysia' && datum.sector == 'Higher Education'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#B3202E",
+        "strokeWidth": 2.5,
+        "y": 0,
+        "y2": {
+          "expr": "height"
+        }
+      },
+      "encoding": {
+        "x2": {
+          "field": "x1"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

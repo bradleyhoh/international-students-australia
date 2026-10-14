@@ -1,0 +1,276 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth map: international students in Australia per 100,000 people in their home country, December 2025. Equal-area projection so country sizes are not distorted.",
+  "width": "container",
+  "height": 430,
+  "projection": {
+    "type": "equalEarth",
+    "rotate": [
+      -150,
+      0
+    ],
+    "fit": {
+      "type": "Sphere"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "sphere": true
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F3F5F7"
+      }
+    },
+    {
+      "data": {
+        "url": "data/geo/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": {
+              "url": "data/countries_2025.csv",
+              "format": {
+                "parse": {
+                  "students": "number",
+                  "population": "number",
+                  "per_100k": "number"
+                }
+              }
+            },
+            "key": "id",
+            "fields": [
+              "country",
+              "students",
+              "population",
+              "per_100k"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.properties.name == 'Australia' ? 'Australia (destination)' : (datum.per_100k == null ? 'No students or no data' : 'data')",
+          "as": "status"
+        },
+        {
+          "calculate": "datum.status != 'data' ? datum.status : datum.per_100k < 5 ? 'Under 5' : datum.per_100k < 10 ? '5\u201310' : datum.per_100k < 25 ? '10\u201325' : datum.per_100k < 50 ? '25\u201350' : datum.per_100k < 100 ? '50\u2013100' : datum.per_100k < 250 ? '100\u2013250' : '250 or more'",
+          "as": "band"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.4
+      },
+      "encoding": {
+        "color": {
+          "field": "band",
+          "type": "ordinal",
+          "title": "Students per 100,000 residents",
+          "scale": {
+            "domain": [
+              "Under 5",
+              "5\u201310",
+              "10\u201325",
+              "25\u201350",
+              "50\u2013100",
+              "100\u2013250",
+              "250 or more",
+              "Australia (destination)",
+              "No students or no data"
+            ],
+            "range": [
+              "#DEEBF7",
+              "#C6DBEF",
+              "#9ECAE1",
+              "#6BAED6",
+              "#4292C6",
+              "#2171B5",
+              "#08458C",
+              "#E2DED6",
+              "#ECEAE5"
+            ]
+          },
+          "legend": {
+            "orient": "bottom-left",
+            "symbolType": "square",
+            "symbolSize": 120,
+            "titleLimit": 300,
+            "labelFontSize": 11,
+            "fillColor": "rgba(255,255,255,0.9)",
+            "padding": 6,
+            "values": [
+              "Under 5",
+              "5\u201310",
+              "10\u201325",
+              "25\u201350",
+              "50\u2013100",
+              "100\u2013250",
+              "250 or more"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.name",
+            "title": "Country"
+          },
+          {
+            "field": "students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Students in Australia"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Population (2025)"
+          },
+          {
+            "field": "per_100k",
+            "type": "quantitative",
+            "format": ",.1f",
+            "title": "Per 100,000 residents"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/geo/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id == '458'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#B3202E",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 90.4,
+            "lat": 27.4,
+            "label": "Bhutan: 1,635 per 100,000"
+          },
+          {
+            "lon": 84.0,
+            "lat": 28.3,
+            "label": "Nepal: 237"
+          },
+          {
+            "lon": 109.5,
+            "lat": 4.0,
+            "label": "Malaysia: 41"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "transform": [
+            {
+              "filter": "datum.label == 'Bhutan: 1,635 per 100,000'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#1F2A37",
+            "dx": -6,
+            "dy": -14,
+            "align": "right"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.label == 'Nepal: 237'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#1F2A37",
+            "dx": -6,
+            "dy": 14,
+            "align": "right"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.label == 'Malaysia: 41'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#1F2A37",
+            "dx": 8,
+            "dy": 16,
+            "align": "left"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

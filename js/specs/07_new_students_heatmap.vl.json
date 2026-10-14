@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap: new students arriving each year from the 12 largest source countries plus Malaysia. Colour shows each year as a share of that country's own best year, so countries of different sizes can be compared.",
+  "width": "container",
+  "height": 330,
+  "data": {
+    "url": "data/new_students_heatmap.csv",
+    "format": {
+      "parse": {
+        "year": "number",
+        "new_students": "number",
+        "students": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "new_students",
+          "as": "best_year"
+        }
+      ],
+      "groupby": [
+        "country"
+      ]
+    },
+    {
+      "calculate": "datum.new_students / datum.best_year * 100",
+      "as": "pct_of_best"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "students",
+          "as": "size_rank_key"
+        }
+      ],
+      "groupby": [
+        "country"
+      ]
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "#FFFFFF",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "values": [
+          2005,
+          2010,
+          2015,
+          2020,
+          2025
+        ]
+      }
+    },
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "size_rank_key",
+        "op": "max",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontWeight": {
+          "condition": {
+            "test": "datum.value == 'Malaysia'",
+            "value": 700
+          },
+          "value": 400
+        },
+        "labelColor": {
+          "condition": {
+            "test": "datum.value == 'Malaysia'",
+            "value": "#B3202E"
+          },
+          "value": "#374151"
+        }
+      }
+    },
+    "color": {
+      "field": "pct_of_best",
+      "type": "quantitative",
+      "title": "% of the country's best year",
+      "scale": {
+        "scheme": "blues",
+        "domain": [
+          0,
+          100
+        ]
+      },
+      "legend": {
+        "orient": "top",
+        "direction": "horizontal",
+        "gradientLength": 220,
+        "titleLimit": 300
+      }
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "title": "Country"
+      },
+      {
+        "field": "year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      {
+        "field": "new_students",
+        "type": "quantitative",
+        "format": ",",
+        "title": "New students"
+      },
+      {
+        "field": "pct_of_best",
+        "type": "quantitative",
+        "format": ".0f",
+        "title": "% of best year"
+      }
+    ]
+  }
+}

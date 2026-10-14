@@ -1,0 +1,394 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Origin-destination flow map: students travelling from the 30 largest source countries to Australia. Flows are curved and thin flows are drawn above thick ones to reduce overlaps (Jenny et al. 2018). Line width = students. Use the slider to change the year.",
+  "width": "container",
+  "height": 430,
+  "params": [
+    {
+      "name": "year",
+      "value": 2025,
+      "bind": {
+        "input": "range",
+        "min": 2005,
+        "max": 2025,
+        "step": 1,
+        "name": "Year "
+      }
+    }
+  ],
+  "projection": {
+    "type": "equalEarth",
+    "rotate": [
+      -150,
+      0
+    ],
+    "fit": {
+      "type": "Sphere"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "sphere": true
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EEF2F5"
+      }
+    },
+    {
+      "data": {
+        "url": "data/geo/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#DCD8D0",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.4
+      }
+    },
+    {
+      "data": {
+        "url": "data/flows.csv",
+        "format": {
+          "parse": {
+            "year": "number",
+            "students": "number",
+            "rank": "number",
+            "lon": "number",
+            "lat": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year"
+        },
+        {
+          "calculate": "134",
+          "as": "dest_lon"
+        },
+        {
+          "calculate": "-25.5",
+          "as": "dest_lat"
+        },
+        {
+          "calculate": "datum.country == 'Malaysia' ? 'Malaysia' : 'Other countries'",
+          "as": "group"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "strokeCap": "round",
+            "opacity": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon_a",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat_a",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "lon_b"
+            },
+            "latitude2": {
+              "field": "lat_b"
+            },
+            "strokeWidth": {
+              "field": "students",
+              "type": "quantitative",
+              "title": "Students",
+              "scale": {
+                "domain": [
+                  0,
+                  200000
+                ],
+                "range": [
+                  0.3,
+                  14
+                ]
+              },
+              "legend": {
+                "values": [
+                  10000,
+                  50000,
+                  100000,
+                  200000
+                ],
+                "format": "~s",
+                "orient": "bottom-left",
+                "direction": "horizontal"
+              }
+            },
+            "color": {
+              "field": "group",
+              "type": "nominal",
+              "title": null,
+              "scale": {
+                "domain": [
+                  "Malaysia",
+                  "Other countries"
+                ],
+                "range": [
+                  "#B3202E",
+                  "#6E95BD"
+                ]
+              },
+              "legend": {
+                "orient": "bottom-right",
+                "direction": "horizontal"
+              }
+            },
+            "order": {
+              "field": "students",
+              "type": "quantitative",
+              "sort": "descending"
+            },
+            "tooltip": [
+              {
+                "field": "country",
+                "title": "Country"
+              },
+              {
+                "field": "year",
+                "type": "quantitative",
+                "format": "d",
+                "title": "Year"
+              },
+              {
+                "field": "students",
+                "type": "quantitative",
+                "format": ",",
+                "title": "Students in Australia"
+              },
+              {
+                "field": "rank",
+                "type": "quantitative",
+                "title": "Rank among source countries"
+              }
+            ]
+          },
+          "transform": [
+            {
+              "calculate": "datum.lon < -30 ? datum.lon + 360 : datum.lon",
+              "as": "olon"
+            },
+            {
+              "calculate": "(datum.olon + datum.dest_lon) / 2 + (datum.dest_lat - datum.lat) * 0.22",
+              "as": "cx"
+            },
+            {
+              "calculate": "(datum.lat + datum.dest_lat) / 2 - (datum.dest_lon - datum.olon) * 0.22",
+              "as": "cy"
+            },
+            {
+              "calculate": "sequence(0, 0.93, 0.035)",
+              "as": "ts"
+            },
+            {
+              "flatten": [
+                "ts"
+              ],
+              "as": [
+                "t"
+              ]
+            },
+            {
+              "calculate": "datum.t + 0.035",
+              "as": "u"
+            },
+            {
+              "calculate": "pow(1-datum.t,2)*datum.olon + 2*(1-datum.t)*datum.t*datum.cx + pow(datum.t,2)*datum.dest_lon",
+              "as": "lon_a"
+            },
+            {
+              "calculate": "pow(1-datum.t,2)*datum.lat + 2*(1-datum.t)*datum.t*datum.cy + pow(datum.t,2)*datum.dest_lat",
+              "as": "lat_a"
+            },
+            {
+              "calculate": "pow(1-datum.u,2)*datum.olon + 2*(1-datum.u)*datum.u*datum.cx + pow(datum.u,2)*datum.dest_lon",
+              "as": "lon_b"
+            },
+            {
+              "calculate": "pow(1-datum.u,2)*datum.lat + 2*(1-datum.u)*datum.u*datum.cy + pow(datum.u,2)*datum.dest_lat",
+              "as": "lat_b"
+            }
+          ]
+        },
+        {
+          "mark": {
+            "type": "circle",
+            "opacity": 0.9,
+            "stroke": "#FFFFFF",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "size": {
+              "value": 30
+            },
+            "color": {
+              "field": "group",
+              "type": "nominal"
+            },
+            "tooltip": [
+              {
+                "field": "country",
+                "title": "Country"
+              },
+              {
+                "field": "year",
+                "type": "quantitative",
+                "format": "d",
+                "title": "Year"
+              },
+              {
+                "field": "students",
+                "type": "quantitative",
+                "format": ",",
+                "title": "Students in Australia"
+              },
+              {
+                "field": "rank",
+                "type": "quantitative",
+                "title": "Rank among source countries"
+              }
+            ],
+            "order": {
+              "field": "students",
+              "type": "quantitative",
+              "sort": "descending"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.rank <= 6 || datum.country == 'Malaysia'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "dy": -9,
+            "fontSize": 12,
+            "fontWeight": 600,
+            "stroke": "#FFFFFF",
+            "strokeWidth": 3,
+            "strokeOpacity": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "country"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.rank <= 6 || datum.country == 'Malaysia'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "dy": -9,
+            "fontSize": 12,
+            "fontWeight": 600
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "country"
+            },
+            "color": {
+              "field": "group",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 134,
+            "lat": -25.5,
+            "label": "Australia"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 120,
+            "color": "#1F2A37"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "dy": 18,
+            "fontSize": 12,
+            "fontWeight": 700,
+            "color": "#1F2A37"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
