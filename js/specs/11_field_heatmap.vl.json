@@ -57,7 +57,7 @@
         "labelColor": {
           "condition": {
             "test": "datum.value == 'Malaysia'",
-            "value": "#B3202E"
+            "value": "#C8102E"
           },
           "value": "#374151"
         }
@@ -77,10 +77,15 @@
           "type": "quantitative",
           "title": "% of the country's higher-education enrolments",
           "scale": {
-            "scheme": "blues",
             "domain": [
               0,
               50
+            ],
+            "range": [
+              "#EAF4F3",
+              "#93C9C5",
+              "#2F8784",
+              "#0B4746"
             ]
           },
           "legend": {

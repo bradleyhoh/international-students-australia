@@ -18,7 +18,7 @@ const theme = {
     titleFontWeight: 600,
     domainColor: "#9CA3AF",
     tickColor: "#9CA3AF",
-    gridColor: "#EFECE6"
+    gridColor: "#E9ECEE"
   },
   // decluttering (Storytelling notes: remove what is not signal)
   axisX: { grid: false, tickSize: 4 },
@@ -63,7 +63,7 @@ const charts = [
 ];
 
 // bump this when files change so browsers fetch the new versions
-const VERSION = "6";
+const VERSION = "7";
 
 const options = {
   actions: { export: true, source: true, compiled: false, editor: true },

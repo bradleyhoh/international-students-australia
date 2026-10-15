@@ -156,11 +156,11 @@
               "Schools"
             ],
             "range": [
-              "#2F5D8A",
+              "#1B6F78",
               "#C9862B",
-              "#5FA39B",
-              "#8D78B6",
-              "#9CA3AF"
+              "#6C8EBF",
+              "#A88BB5",
+              "#B8BCC2"
             ]
           },
           "legend": {
@@ -258,7 +258,7 @@
         "color": {
           "condition": {
             "test": "datum.country == 'Malaysia'",
-            "value": "#B3202E"
+            "value": "#C8102E"
           },
           "value": "#374151"
         }
@@ -297,7 +297,7 @@
         "color": {
           "condition": {
             "test": "datum.country == 'Malaysia'",
-            "value": "#B3202E"
+            "value": "#C8102E"
           },
           "value": "#374151"
         }
@@ -312,7 +312,7 @@
       "mark": {
         "type": "rect",
         "fill": null,
-        "stroke": "#B3202E",
+        "stroke": "#C8102E",
         "strokeWidth": 2.5,
         "y": 0,
         "y2": {
@@ -339,7 +339,7 @@
         "y": -6,
         "fontSize": 12,
         "fontWeight": 700,
-        "color": "#B3202E"
+        "color": "#C8102E"
       },
       "encoding": {
         "x": {

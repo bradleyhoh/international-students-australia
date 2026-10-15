@@ -19,7 +19,7 @@
       },
       "mark": {
         "type": "rect",
-        "color": "#E8E6E1",
+        "color": "#E9EAEA",
         "opacity": 0.7
       },
       "encoding": {
@@ -66,7 +66,7 @@
     {
       "mark": {
         "type": "area",
-        "color": "#2F5D8A",
+        "color": "#1B6F78",
         "opacity": 0.18,
         "interpolate": "monotone"
       },
@@ -115,7 +115,7 @@
     {
       "mark": {
         "type": "line",
-        "color": "#2F5D8A",
+        "color": "#1B6F78",
         "strokeWidth": 2.5,
         "interpolate": "monotone"
       },

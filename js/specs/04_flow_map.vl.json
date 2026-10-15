@@ -37,7 +37,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#EEF2F5"
+        "fill": "#F3F5F6"
       }
     },
     {
@@ -50,7 +50,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#DCD8D0",
+        "fill": "#E2E3E0",
         "stroke": "#FFFFFF",
         "strokeWidth": 0.4
       }
@@ -143,8 +143,8 @@
                   "Other countries"
                 ],
                 "range": [
-                  "#B3202E",
-                  "#6E95BD"
+                  "#C8102E",
+                  "#7D8B99"
                 ]
               },
               "legend": {

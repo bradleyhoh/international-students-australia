@@ -71,7 +71,7 @@
       },
       "mark": {
         "type": "rect",
-        "color": "#E8E6E1",
+        "color": "#E9EAEA",
         "opacity": 0.7,
         "y": 0,
         "y2": {
@@ -162,8 +162,8 @@
               "Malaysians"
             ],
             "range": [
-              "#2F5D8A",
-              "#B3202E"
+              "#1B6F78",
+              "#C8102E"
             ]
           }
         },
@@ -241,7 +241,7 @@
         "dy": -14,
         "fontSize": 12,
         "fontWeight": 700,
-        "color": "#2F5D8A"
+        "color": "#1B6F78"
       },
       "encoding": {
         "text": {
@@ -262,7 +262,7 @@
         "dy": 16,
         "fontSize": 12,
         "fontWeight": 700,
-        "color": "#B3202E"
+        "color": "#C8102E"
       },
       "encoding": {
         "text": {
@@ -299,7 +299,7 @@
       "mark": {
         "type": "circle",
         "size": 45,
-        "color": "#B3202E",
+        "color": "#C8102E",
         "opacity": 1
       }
     }

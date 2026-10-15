@@ -95,12 +95,12 @@
           "condition": [
             {
               "test": "datum.is_my",
-              "value": "#B3202E"
+              "value": "#C8102E"
             },
             {
               "param": "pick",
               "empty": false,
-              "value": "#2F5D8A"
+              "value": "#1B6F78"
             }
           ],
           "value": "#C8CDD3"
@@ -165,7 +165,7 @@
         "color": {
           "condition": {
             "test": "datum.is_my",
-            "value": "#B3202E"
+            "value": "#C8102E"
           },
           "value": "#374151"
         }
@@ -194,7 +194,7 @@
         "color": {
           "condition": {
             "test": "datum.is_my",
-            "value": "#B3202E"
+            "value": "#C8102E"
           },
           "value": "#374151"
         }

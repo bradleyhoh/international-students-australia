@@ -50,7 +50,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#ECE8E1",
+        "fill": "#E6E7E4",
         "stroke": "#FFFFFF",
         "strokeWidth": 1
       }
@@ -126,7 +126,7 @@
               "Regional"
             ],
             "range": [
-              "#2F5D8A",
+              "#1B6F78",
               "#C9862B"
             ]
           },
