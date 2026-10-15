@@ -35,7 +35,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-optical-sizing: auto;
   font-size: 18px;
   line-height: 1.6;
@@ -49,12 +49,12 @@ body {
 }
 
 h1, h2 {
-  font-family: var(--serif);
+  font-family: var(--sans);
   line-height: 1.15;
   margin: 0;
   letter-spacing: -0.01em;
 }
-h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 700; }
+h1 { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 700; }
 h2 { font-size: clamp(1.6rem, 3.4vw, 2.25rem); font-weight: 600; margin-bottom: 12px; }
 h3 {
   font-family: var(--sans);
@@ -236,7 +236,7 @@ section.wrap { padding-top: 72px; }
 .takeaways li { margin-bottom: 12px; }
 
 .about { font-family: var(--sans); font-size: 0.98rem; color: var(--ink-soft); }
-.about h2 { font-family: var(--serif); }
+.about h2 { font-family: var(--sands); }
 .about h3 { margin-top: 12px; color: var(--ink); }
 .about ul { padding-left: 18px; }
 .about li { margin-bottom: 8px; }
