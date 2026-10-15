@@ -131,7 +131,7 @@ strong { font-weight: 700; }
 .toc a:hover { color: var(--blue); }
 
 /* ---------- sections ---------- */
-section { padding-top: 72px; }
+section.wrap { padding-top: 72px; }
 .section-no {
   font-family: var(--sans);
   font-weight: 700;
