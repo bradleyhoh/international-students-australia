@@ -97,6 +97,7 @@ strong { font-weight: 700; }
   border-top: 3px solid #8FB3D6;
   padding-top: 10px;
   font-family: var(--sans);
+  text-align: center;
 }
 .stat.malaysia { border-top-color: #E0525F; }
 .stat .num {
