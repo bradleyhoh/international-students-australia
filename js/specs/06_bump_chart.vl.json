@@ -156,7 +156,7 @@
         "align": "left",
         "dx": 8,
         "fontSize": 12,
-        "fontWeight": 500
+        "fontWeight": 400
       },
       "encoding": {
         "text": {
@@ -221,8 +221,7 @@
         "dx": 10,
         "dy": -10,
         "fontSize": 12,
-        "fontStyle": "italic",
-        "color": "#4B5563"
+        "color": "#1F2937"
       },
       "encoding": {
         "text": {

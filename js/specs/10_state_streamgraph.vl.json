@@ -197,8 +197,7 @@
       "mark": {
         "type": "text",
         "fontSize": 12,
-        "fontStyle": "italic",
-        "color": "#4B5563",
+        "color": "#6B7280",
         "align": "center",
         "baseline": "top",
         "y": 4
@@ -278,7 +277,7 @@
           "type": "quantitative"
         },
         "text": {
-          "value": "WA: 33k → 73k"
+          "value": "WA: 33k \u2192 73k"
         }
       }
     }

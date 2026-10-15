@@ -14,6 +14,10 @@
         "step": 1,
         "name": "Year "
       }
+    },
+    {
+      "name": "grow",
+      "value": 1
     }
   ],
   "projection": {
@@ -201,6 +205,9 @@
               "as": [
                 "t"
               ]
+            },
+            {
+              "filter": "datum.t < grow"
             },
             {
               "calculate": "datum.t + 0.035",

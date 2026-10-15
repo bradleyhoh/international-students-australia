@@ -252,8 +252,7 @@
             "dx": 3,
             "dy": 18,
             "fontSize": 12,
-            "fontStyle": "italic",
-            "color": "#4B5563"
+            "color": "#1F2937"
           },
           "encoding": {
             "longitude": {

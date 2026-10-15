@@ -8,8 +8,9 @@
   <meta name="author" content="Brendan Hoh">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
@@ -22,9 +23,9 @@
     <h1>Destination Australia</h1>
     <p class="dek">Twenty years of international students in Australia: who comes, where they study, what they study, and why Malaysia, once a top-four source country, has slipped to 13th.</p>
     <div class="stats">
-      <div class="stat"><span class="num">844,299</span><span class="lbl">international students in Australia, Dec 2025</span></div>
-      <div class="stat"><span class="num">190+</span><span class="lbl">nationalities represented</span></div>
-      <div class="stat malaysia"><span class="num">14,895</span><span class="lbl">Malaysians studying in Australia, 13th largest source</span></div>
+      <div class="stat"><span class="num" data-count="844299">844,299</span><span class="lbl">international students in Australia, Dec 2025</span></div>
+      <div class="stat"><span class="num" data-count="190" data-suffix="+">190+</span><span class="lbl">nationalities represented</span></div>
+      <div class="stat malaysia"><span class="num" data-count="14895">14,895</span><span class="lbl">Malaysians studying in Australia, 13th largest source</span></div>
     </div>
     <p class="meta">By Brendan Hoh · Monash University Malaysia · October 2026 · Data to December 2025</p>
   </div>
@@ -45,7 +46,7 @@
 
   <!-- ===== Section 1 ===== -->
   <section id="growth" class="wrap">
-    <p class="section-no">1</p>
+    <p class="section-no">Part 1</p>
     <h2>Almost three times as many students as in 2005</h2>
     <p class="lede">In 2005 Australia hosted about 289,000 international students. By 2024 it had a record 851,000. The climb was not smooth: a slide after 2009, a long boom in the 2010s, and a sharp fall when Australia closed its borders during COVID-19.</p>
 
@@ -89,16 +90,17 @@
 
   <!-- ===== Section 2 ===== -->
   <section id="origins" class="wrap">
-    <p class="section-no">2</p>
+    <p class="section-no">Part 2</p>
     <h2>From East Asia to South Asia</h2>
     <p class="lede">China has been the largest source every year since 2005. What changed is who comes next: India, Nepal, Vietnam and the Philippines now follow it. Malaysia, a top-five source every year from 2005 to 2018, has fallen to 13th.</p>
 
     <figure class="card">
       <figcaption>
         <h3>Where Australia's international students come from</h3>
-        <p>Curved lines run from the 30 largest source countries to Australia; thicker lines carry more students. Drag the slider to replay 2005–2025. <span class="c-my">Malaysia is in red.</span></p>
+        <p>Curved lines run from the 30 largest source countries to Australia; thicker lines carry more students. Press Play or drag the slider to step through 2005–2025. <span class="c-my">Malaysia is in red.</span></p>
       </figcaption>
       <div id="vis04" class="vis"></div>
+      <button type="button" class="play" id="play04" aria-pressed="false">▶ Play 2005–2025</button>
       <p class="source">Source: Department of Education, International Student Data; country positions from Natural Earth.</p>
     </figure>
 
@@ -142,7 +144,7 @@
 
   <!-- ===== Section 3 ===== -->
   <section id="arrivals" class="wrap">
-    <p class="section-no">3</p>
+    <p class="section-no">Part 3</p>
     <h2>New arrivals have peaked for most countries</h2>
     <p class="lede">New-student numbers show where the pipeline is heading. After a rebound in 2023, new arrivals fell in 2024 and 2025 for most large source countries. Malaysia's intake peaked earlier, in 2017, and is now at about 38% of that level.</p>
 
@@ -158,7 +160,7 @@
 
   <!-- ===== Section 4 ===== -->
   <section id="places" class="wrap">
-    <p class="section-no">4</p>
+    <p class="section-no">Part 4</p>
     <h2>Two inner cities hold four in ten enrolments</h2>
     <p class="lede">New South Wales and Victoria have hosted about two-thirds of international students for twenty years. Within them, students cluster in a handful of inner-city areas.</p>
 
@@ -198,7 +200,7 @@
 
   <!-- ===== Section 5 ===== -->
   <section id="fields" class="wrap">
-    <p class="section-no">5</p>
+    <p class="section-no">Part 5</p>
     <h2>What they study depends on where they come from</h2>
     <p class="lede">Most Chinese and Bangladeshi students are at university. Most Filipino, Colombian and Brazilian students take vocational or English courses. Malaysians sit in between: just over half at university and almost 40% in vocational courses.</p>
 
@@ -255,7 +257,7 @@
           <li>Flow lines are curved and thin flows are drawn above thick ones to reduce overlaps, following Jenny et al. (2018), <em>Design principles for origin-destination flow maps</em>.</li>
         </ul>
         <h3>Credits</h3>
-        <p>Author: Brendan Hoh. Built with Vega-Lite 5. Published October 2026.</p>
+        <p>Author: Brendan Hoh. Built with Vega-Lite 5. Typefaces: Source Serif 4 and Source Sans 3 (SIL Open Font License). Published October 2026.</p>
         <p class="ai-note"><strong>AI acknowledgement:</strong> Generative AI (Claude, Anthropic) was used to help locate and process the data, write the Vega-Lite specifications and page code, and draft the text. The author checked the figures against the sources and is responsible for the final design and wording.</p>
       </div>
     </div>
