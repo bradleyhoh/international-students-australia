@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell dot plot: share of Malaysian students in each state or territory compared with the share of all international students, 2025.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/malaysia_states_2025.csv",
+    "format": {
+      "parse": {
+        "students": "number",
+        "share": "number"
+      }
+    }
+  },
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "WA",
+        "SA",
+        "ACT",
+        "TAS",
+        "NT"
+      ],
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelFontWeight": 600,
+        "labelPadding": 8
+      }
+    },
+    "x": {
+      "field": "share",
+      "type": "quantitative",
+      "title": "% of the group studying in each state",
+      "scale": {
+        "domain": [
+          0,
+          55
+        ]
+      },
+      "axis": {
+        "values": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "labelExpr": "datum.value + '%'",
+        "grid": true
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#CBD2DA",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "detail": {
+          "field": "state"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 120,
+        "opacity": 1,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "All international students",
+              "Malaysians"
+            ],
+            "range": [
+              "#5B84AE",
+              "#B3202E"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "circle"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "group",
+            "title": "Group"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "% of group"
+          },
+          {
+            "field": "students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Students"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state == 'VIC' || datum.state == 'NSW'"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "share",
+              "as": "row_max"
+            }
+          ],
+          "groupby": [
+            "state"
+          ]
+        },
+        {
+          "calculate": "format(datum.share,'.0f') + '%'",
+          "as": "lab"
+        }
+      ],
+      "layer": [
+        {
+          "transform": [
+            {
+              "filter": "datum.share == datum.row_max"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 10,
+            "fontSize": 12,
+            "fontWeight": 700
+          },
+          "encoding": {
+            "text": {
+              "field": "lab"
+            },
+            "color": {
+              "field": "group",
+              "type": "nominal"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.share != datum.row_max"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -10,
+            "fontSize": 12,
+            "fontWeight": 700
+          },
+          "encoding": {
+            "text": {
+              "field": "lab"
+            },
+            "color": {
+              "field": "group",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

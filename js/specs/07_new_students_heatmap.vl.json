@@ -43,11 +43,6 @@
       ]
     }
   ],
-  "mark": {
-    "type": "rect",
-    "stroke": "#FFFFFF",
-    "strokeWidth": 1
-  },
   "encoding": {
     "x": {
       "field": "year",
@@ -89,47 +84,98 @@
           "value": "#374151"
         }
       }
-    },
-    "color": {
-      "field": "pct_of_best",
-      "type": "quantitative",
-      "title": "% of the country's best year",
-      "scale": {
-        "scheme": "blues",
-        "domain": [
-          0,
-          100
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "pct_of_best",
+          "type": "quantitative",
+          "title": "% of the country's best year",
+          "scale": {
+            "scheme": "blues",
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "gradientLength": 220,
+            "titleLimit": 300
+          }
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "new_students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "New students"
+          },
+          {
+            "field": "pct_of_best",
+            "type": "quantitative",
+            "format": ".0f",
+            "title": "% of best year"
+          }
         ]
-      },
-      "legend": {
-        "orient": "top",
-        "direction": "horizontal",
-        "gradientLength": 220,
-        "titleLimit": 300
       }
     },
-    "tooltip": [
-      {
-        "field": "country",
-        "title": "Country"
-      },
-      {
-        "field": "year",
-        "type": "ordinal",
-        "title": "Year"
-      },
-      {
-        "field": "new_students",
-        "type": "quantitative",
-        "format": ",",
-        "title": "New students"
-      },
-      {
-        "field": "pct_of_best",
-        "type": "quantitative",
-        "format": ".0f",
-        "title": "% of best year"
-      }
-    ]
-  }
+    {
+      "transform": [
+        {
+          "filter": "(datum.country == 'Malaysia' && datum.year == 2017) || (datum.country == 'Colombia' && (datum.year == 2023 || datum.year == 2025))"
+        },
+        {
+          "calculate": "datum.country == 'Colombia' && datum.year == 2025 ? '\u221293%' : 'Peak'",
+          "as": "note"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rect",
+            "fill": null,
+            "stroke": "#1F2937",
+            "strokeWidth": 2
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "fontWeight": 700
+          },
+          "encoding": {
+            "text": {
+              "field": "note"
+            },
+            "color": {
+              "condition": {
+                "test": "datum.pct_of_best >= 60",
+                "value": "#FFFFFF"
+              },
+              "value": "#1F2937"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

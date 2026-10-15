@@ -1,6 +1,6 @@
 # Destination Australia: International Students, 2005–2025
 
-FIT3179 Data Visualisation 2, Brendan Hoh, October 2026.
+FIT3179 Data Visualisation 2, Bradley Hoh Lok Yew, October 2026.
 
 A one-page, scrollable data story about international students in Australia, written for a Malaysian audience. All charts are built with [Vega-Lite 5](https://vega.github.io/vega-lite/).
 
@@ -12,7 +12,7 @@ Live site: https://bradleyhoh.github.io/international-students-australia/
 index.html                 the page
 css/style.css              layout and typography
 js/main.js                 embeds each chart with a shared theme
-js/specs/*.vl.json         one Vega-Lite specification per chart (13 charts)
+js/specs/*.vl.json         one Vega-Lite specification per chart (15 charts)
 data/*.csv                 cleaned data used by the charts
 data/geo/                  TopoJSON boundaries (world, Australian states)
 scripts/prepare_data.py    turns the raw downloads into data/*.csv
@@ -36,6 +36,8 @@ raw/                       original downloads (kept for reproducibility)
 | 11 | 11_field_heatmap | Heatmap |
 | 12 | 12_slope_share | Slope chart |
 | 13 | 13_sector_marimekko | Marimekko (mosaic) chart |
+| 14 | 14_malaysia_index | Indexed line chart (Malaysia vs all) |
+| 15 | 15_malaysia_states | Dumbbell dot plot (where Malaysians study) |
 
 ## Data sources
 

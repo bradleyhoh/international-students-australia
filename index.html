@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Destination Australia: International Students, 2005–2025</title>
   <meta name="description" content="A data visualisation of international students in Australia from 2005 to 2025, told for a Malaysian audience.">
-  <meta name="author" content="Brendan Hoh">
+  <meta name="author" content="Bradley Hoh Lok Yew">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=6">
   <script>document.documentElement.classList.add("js");</script>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
@@ -20,13 +20,13 @@
 <header class="hero">
   <div class="wrap">
     <h1>Destination Australia</h1>
-    <p class="dek">Twenty years of international students in Australia: who comes, where they study, what they study, and why Malaysia, once a top-four source country, has slipped to 13th.</p>
+    <p class="dek">Twenty years of international students in Australia: who comes, where they study, what they study, and how Malaysia, once a top-four source country, has slipped to 13th.</p>
     <div class="stats">
       <div class="stat"><span class="num" data-count="844299">844,299</span><span class="lbl">international students in Australia, Dec 2025</span></div>
       <div class="stat"><span class="num" data-count="190" data-suffix="+">190+</span><span class="lbl">nationalities represented</span></div>
       <div class="stat malaysia"><span class="num" data-count="14895">14,895</span><span class="lbl">Malaysians studying in Australia, 13th largest source</span></div>
     </div>
-    <p class="meta">By Bradley Hoh Lok Yew</p>
+    <p class="meta">By Bradley Hoh Lok Yew · October 2026 · Data to December 2025</p>
   </div>
 </header>
 
@@ -58,6 +58,24 @@
       <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
     </figure>
 
+    <div class="grid-2">
+      <figure class="card">
+        <figcaption>
+          <h3>Growth since 2005: everyone vs Malaysians</h3>
+          <p>Index, 2005 = 100. <span class="c-blue">All international students</span> compared with <span class="c-my">Malaysians</span>.</p>
+        </figcaption>
+        <div id="vis14" class="vis"></div>
+        <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
+      </figure>
+      <div class="side-text">
+        <div class="kpis">
+          <div class="kpi"><span class="kpi-num c-blue">×2.9</span><span class="kpi-lbl">all international students, 2005 to 2025</span></div>
+          <div class="kpi"><span class="kpi-num c-my">×0.8</span><span class="kpi-lbl">Malaysian students, 2005 to 2025</span></div>
+        </div>
+        <p>While the total nearly tripled, the number of Malaysians fell from 18,074 to 14,895. It peaked at 26,003 in 2018 and has stayed well below that level since COVID-19.</p>
+      </div>
+    </div>
+
     <div class="note">
       <p><strong>Students or enrolments?</strong> A <em>student</em> is one person. An <em>enrolment</em> is one course. One student can hold several enrolments, for example an English course followed by a degree. So enrolment totals (about 1.05 million in 2025) are higher than student totals (844,000). Each chart says which one it counts.</p>
     </div>
@@ -85,6 +103,8 @@
       <div id="vis03" class="vis"></div>
       <p class="source">Source: Department of Education, enrolments by sector, December 2018–2025.</p>
     </figure>
+
+    <p class="next">Malaysians are a shrinking part of a growing market. So who is filling the classrooms?</p>
   </section>
 
   <!-- ===== Section 2 ===== -->
@@ -139,6 +159,8 @@
     <div class="note callout-my">
       <p>Raw totals favour big countries. Dividing by population tells a different story: Bhutan sends 1,635 students per 100,000 people, about 40 times Malaysia's rate. For <span class="c-my">Malaysia</span>, about <strong>41 people in every 100,000</strong> are studying in Australia: above Indonesia (9) and India (10), but far below Singapore (113) and Nepal (237).</p>
     </div>
+
+    <p class="next">These totals describe the past. New arrivals show where things are heading.</p>
   </section>
 
   <!-- ===== Section 3 ===== -->
@@ -150,32 +172,38 @@
     <figure class="card">
       <figcaption>
         <h3>New students each year, as % of each country's best year</h3>
-        <p>Rows are the 12 largest source countries plus <span class="c-my">Malaysia</span>, ordered by size. Comparing each country with its own peak lets small and large countries share one colour scale.</p>
+        <p>Rows are the 12 largest source countries plus <span class="c-my">Malaysia</span>, ordered by size. Comparing each country with its own peak lets small and large countries share one colour scale. Outlined: <span class="c-my">Malaysia's</span> peak in 2017, and Colombia's peak in 2023 followed by a 93% fall by 2025.</p>
       </figcaption>
       <div id="vis07" class="vis"></div>
       <p class="source">Source: Department of Education, International Student Data (new students), December 2005–2025.</p>
     </figure>
+
+    <p class="next">Once they arrive, where in Australia do they study?</p>
   </section>
 
   <!-- ===== Section 4 ===== -->
   <section id="places" class="wrap">
     <p class="section-no"></p>
     <h2>Two inner cities hold four in ten enrolments</h2>
-    <p class="lede">New South Wales and Victoria have hosted about two-thirds of international students for twenty years. Within them, students cluster in a handful of inner-city areas.</p>
+    <p class="lede">New South Wales and Victoria have hosted about two-thirds of international students for twenty years. Within them, students cluster in a handful of inner-city areas. Malaysians lean even more towards Melbourne: almost half of them study in Victoria.</p>
 
     <div class="grid-2">
       <figure class="card">
         <figcaption>
           <h3>Students per 1,000 residents, 2025</h3>
-          <p>By state or territory of study.</p>
+          <p>All international students, by state or territory of study. The ACT has the most per resident (39 per 1,000); Tasmania the fewest (14).</p>
         </figcaption>
         <div id="vis08" class="vis"></div>
         <p class="source">Sources: Department of Education (students, December 2025); ABS (population, December 2025; ASGS boundaries).</p>
       </figure>
-      <div class="side-text">
-        <p>New South Wales has the most international students (324,000), but per resident the Australian Capital Territory leads, with 39 international students for every 1,000 residents.</p>
-        <p>Victoria and NSW are close behind. Tasmania has the lowest rate, about 14 per 1,000, and its numbers have almost halved since 2019.</p>
-      </div>
+      <figure class="card">
+        <figcaption>
+          <h3>Where Malaysians study, 2025</h3>
+          <p>Share of <span class="c-my">Malaysian students</span> in each state, compared with <span class="c-blue">all international students</span>. Victoria hosts 48% of Malaysians but only 30% of all international students; New South Wales is the reverse.</p>
+        </figcaption>
+        <div id="vis15" class="vis"></div>
+        <p class="source">Source: Department of Education, International Student Data, December 2025.</p>
+      </figure>
     </div>
 
     <figure class="card">
@@ -195,6 +223,8 @@
       <div id="vis10" class="vis"></div>
       <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
     </figure>
+
+    <p class="next">And what do they come to study?</p>
   </section>
 
   <!-- ===== Section 5 ===== -->
@@ -215,7 +245,7 @@
     <figure class="card">
       <figcaption>
         <h3>Field of study by country, universities, 2025</h3>
-        <p>Numbers are % of each country's university enrolments. Rows add up to roughly 100% (mixed-field courses and the very small hospitality field are left out). Malaysians have the most even spread: business first (26%), then IT, science, health and society and culture at around 10–12% each.</p>
+        <p>Numbers are % of each country's university enrolments; the outlined cell is each country's most common field. Rows add up to roughly 100% (mixed-field courses and the very small hospitality field are left out). Malaysians have the most even spread: business first (26%), then IT, science, health and society and culture at around 10–12% each.</p>
       </figcaption>
       <div id="vis11" class="vis"></div>
       <p class="source">Source: Department of Education, higher-education enrolments by nationality and broad field, December 2025.</p>
@@ -225,11 +255,11 @@
   <!-- ===== Takeaways ===== -->
   <section class="wrap takeaways">
     <h2>What this means for Malaysians</h2>
-    <ol>
-      <li><strong>Australia is busier than ever,</strong> but fewer Malaysians are choosing it. Malaysia was a top-five source every year from 2005 to 2018 and is 13th today; its share has more than halved since 2015.</li>
-      <li><strong>Competition comes from South Asia.</strong> Since 2015, students from Bangladesh, Nepal and the Philippines have grown more than fourfold. Malaysians now study alongside a very different mix of classmates than a decade ago.</li>
-      <li><strong>Where you study matters.</strong> Most international students are in inner Sydney and inner Melbourne; regional areas host under 7% of enrolments.</li>
-      <li><strong>Malaysians are generalists.</strong> They split between university and vocational courses, and at university their field mix is the most even of the 12 countries shown.</li>
+    <ol class="takeaway-grid">
+      <li><span class="t-num c-my">13th</span><strong>Busier, but fewer Malaysians.</strong> Australia hosts almost three times as many international students as in 2005, yet fewer Malaysians than in 2005. Malaysia was a top-five source every year to 2018 and is 13th today.</li>
+      <li><span class="t-num">4×</span><strong>A new mix of classmates.</strong> Since 2015, students from Bangladesh, Nepal and the Philippines have each grown more than fourfold, and South Asian countries are now among the fastest-growing sources.</li>
+      <li><span class="t-num">48%</span><strong>Melbourne is the Malaysian choice.</strong> Almost half of Malaysians study in Victoria, against 30% of all international students. Regional areas, with under 7% of enrolments, are where international students are fewest.</li>
+      <li><span class="t-num">26%</span><strong>Generalists, not specialists.</strong> Business is the top field for Malaysian university students, at 26%, but their mix across fields is the most even of the 12 countries shown.</li>
     </ol>
   </section>
 
@@ -266,6 +296,6 @@
   <div class="wrap">By: Bradley Hoh Lok Yew</div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>

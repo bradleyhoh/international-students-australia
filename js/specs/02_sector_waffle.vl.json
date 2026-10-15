@@ -12,64 +12,94 @@
       "as": "legend_label"
     }
   ],
-  "mark": {
-    "type": "rect",
-    "stroke": "#FFFFFF",
-    "strokeWidth": 2,
-    "cornerRadius": 2
-  },
-  "encoding": {
-    "x": {
-      "field": "col",
-      "type": "ordinal",
-      "axis": null
-    },
-    "y": {
-      "field": "row",
-      "type": "ordinal",
-      "axis": null
-    },
-    "color": {
-      "field": "legend_label",
-      "type": "nominal",
-      "title": null,
-      "sort": {
-        "field": "cell",
-        "op": "min"
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2,
+        "cornerRadius": 2
       },
-      "scale": {
-        "range": [
-          "#2F5D8A",
-          "#C9862B",
-          "#5FA39B",
-          "#8D78B6",
-          "#9CA3AF"
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null
+        },
+        "color": {
+          "field": "legend_label",
+          "type": "nominal",
+          "title": null,
+          "sort": {
+            "field": "cell",
+            "op": "min"
+          },
+          "scale": {
+            "range": [
+              "#2F5D8A",
+              "#C9862B",
+              "#5FA39B",
+              "#8D78B6",
+              "#9CA3AF"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "labelFontSize": 12.5,
+            "symbolType": "square",
+            "symbolSize": 160
+          }
+        },
+        "tooltip": [
+          {
+            "field": "sector",
+            "title": "Sector"
+          },
+          {
+            "field": "sector_enrolments",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Enrolments (Dec 2025)"
+          },
+          {
+            "field": "sector_share",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Share (%)"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "t": "Universities + vocational colleges = 86 of every 100"
+          }
         ]
       },
-      "legend": {
-        "orient": "right",
-        "labelFontSize": 12.5,
-        "symbolType": "square",
-        "symbolSize": 160
-      }
-    },
-    "tooltip": [
-      {
-        "field": "sector",
-        "title": "Sector"
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#1F2937",
+        "x": 0,
+        "y": {
+          "expr": "height + 10"
+        }
       },
-      {
-        "field": "sector_enrolments",
-        "type": "quantitative",
-        "format": ",",
-        "title": "Enrolments (Dec 2025)"
-      },
-      {
-        "field": "sector_share",
-        "type": "quantitative",
-        "format": ".1f",
-        "title": "Share (%)"
+      "encoding": {
+        "text": {
+          "field": "t"
+        }
       }
-    ]
-  }
+    }
+  ]
 }

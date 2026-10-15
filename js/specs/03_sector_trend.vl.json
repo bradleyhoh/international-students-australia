@@ -24,7 +24,7 @@
   },
   "columns": 5,
   "spec": {
-    "width": 140,
+    "width": 150,
     "height": 120,
     "layer": [
       {
@@ -118,6 +118,77 @@
             }
           ]
         }
+      },
+      {
+        "transform": [
+          {
+            "filter": "(datum.sector == 'ELICOS' && datum.year == 2021) || (datum.sector == 'Higher Education' && datum.year == 2025)"
+          },
+          {
+            "calculate": "datum.sector == 'ELICOS' ? '\u221273% vs 2019' : 'Highest: 543k'",
+            "as": "note"
+          }
+        ],
+        "layer": [
+          {
+            "transform": [
+              {
+                "filter": "datum.sector == 'ELICOS'"
+              }
+            ],
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "dx": 6,
+              "dy": 4,
+              "fontSize": 12,
+              "fontWeight": 600,
+              "color": "#1F2937"
+            },
+            "encoding": {
+              "x": {
+                "field": "year",
+                "type": "quantitative"
+              },
+              "y": {
+                "field": "enrolments",
+                "type": "quantitative"
+              },
+              "text": {
+                "field": "note"
+              }
+            }
+          },
+          {
+            "transform": [
+              {
+                "filter": "datum.sector == 'Higher Education'"
+              }
+            ],
+            "mark": {
+              "type": "text",
+              "align": "right",
+              "dx": -4,
+              "dy": -10,
+              "fontSize": 12,
+              "fontWeight": 600,
+              "color": "#1F2937"
+            },
+            "encoding": {
+              "x": {
+                "field": "year",
+                "type": "quantitative"
+              },
+              "y": {
+                "field": "enrolments",
+                "type": "quantitative"
+              },
+              "text": {
+                "field": "note"
+              }
+            }
+          }
+        ]
       }
     ]
   },

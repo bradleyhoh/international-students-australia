@@ -229,6 +229,28 @@ mk = mk.rename(columns={"Sector": "sector", "Enrolments": "enrolments"})
 mk["share"] = (mk.enrolments / mk.country_total * 100).round(1)
 mk[["country", "sector", "enrolments", "country_total", "share"]].to_csv(OUT / "sector_by_country_2025.csv", index=False)
 
+# ---------- 8. Malaysia vs all: indexed growth since 2005 ----------
+my_trend = nat[nat.Nationality == MALAYSIA][["Year", "Students"]].rename(columns={"Year": "year", "Students": "students"})
+my_trend["group"] = "Malaysians"
+all_trend = national[["year", "students"]].copy()
+all_trend["group"] = "All international students"
+idx = pd.concat([all_trend, my_trend])
+base = idx[idx.year == 2005].set_index("group").students
+idx["index"] = (idx.students / idx.group.map(base) * 100).round(1)
+idx[["year", "group", "students", "index"]].to_csv(OUT / "malaysia_index.csv", index=False)
+
+# ---------- 9. Where Malaysians study vs all international students (state shares, 2025) ----------
+STATES = ["NSW", "VIC", "QLD", "WA", "SA", "ACT", "TAS", "NT"]
+s25_all = st[(st.Year == LATEST) & (st.Nationality == "_All") & st.State.isin(STATES)].set_index("State").Students
+s25_my = st[(st.Year == LATEST) & (st.Nationality == MALAYSIA) & st.State.isin(STATES)].set_index("State").Students
+rows = []
+for code in STATES:
+    rows.append({"state": code, "group": "All international students", "students": int(s25_all[code]),
+                 "share": round(s25_all[code] / s25_all.sum() * 100, 1)})
+    rows.append({"state": code, "group": "Malaysians", "students": int(s25_my[code]),
+                 "share": round(s25_my[code] / s25_my.sum() * 100, 1)})
+pd.DataFrame(rows).to_csv(OUT / "malaysia_states_2025.csv", index=False)
+
 print("Done. Files written to", OUT)
 for f in sorted(OUT.glob("*.csv")):
     print(f"  {f.name:32s} {f.stat().st_size/1024:6.1f} KB")

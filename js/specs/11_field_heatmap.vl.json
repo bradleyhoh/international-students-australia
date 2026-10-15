@@ -115,6 +115,31 @@
       }
     },
     {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "share",
+              "as": "row_max"
+            }
+          ],
+          "groupby": [
+            "country"
+          ]
+        },
+        {
+          "filter": "datum.share == datum.row_max"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#1F2937",
+        "strokeWidth": 2
+      }
+    },
+    {
       "mark": {
         "type": "text",
         "fontSize": 11

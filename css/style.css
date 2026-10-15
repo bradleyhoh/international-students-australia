@@ -151,9 +151,9 @@ section.wrap { padding-top: 72px; }
 
 .card {
   background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 20px 22px 16px;
+  border: 1px solid #ECE8E0;
+  border-radius: 12px;
+  padding: 22px 24px 16px;
   margin: 0 0 24px;
   min-width: 0;
   font-family: var(--sans);
@@ -232,12 +232,73 @@ section.wrap { padding-top: 72px; }
 .play:hover { background: #244A6F; }
 .play:focus-visible { outline: 3px solid #8FB3D6; outline-offset: 2px; }
 
+
+/* ---------- key numbers beside a chart ---------- */
+.kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.kpi { border-top: 3px solid currentColor; padding-top: 8px; color: var(--ink-soft); }
+.kpi:first-child { border-top-color: var(--blue); }
+.kpi:last-child { border-top-color: var(--malaysia); }
+.kpi-num {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.kpi-lbl { display: block; font-size: 0.95rem; color: var(--muted); line-height: 1.35; }
+
+/* ---------- bridge to the next section ---------- */
+.next {
+  margin: 8px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--ink);
+  max-width: 62ch;
+}
+.next::after { content: " ↓"; color: var(--ochre); }
+
+/* ---------- takeaways as four cards ---------- */
+.takeaway-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.takeaway-grid li {
+  background: var(--card);
+  border: 1px solid #ECE8E0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 0;
+  color: var(--ink-soft);
+}
+.takeaway-grid .t-num {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--blue);
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.takeaway-grid .t-num.c-my { color: var(--malaysia); }
+.takeaway-grid strong { color: var(--ink); display: block; margin-bottom: 2px; }
+
 /* ---------- takeaways & about ---------- */
-.takeaways ol { padding-left: 22px; max-width: 62ch; }
-.takeaways li { margin-bottom: 12px; }
+.takeaways ol:not(.takeaway-grid) { padding-left: 22px; max-width: 62ch; }
+.takeaways ol:not(.takeaway-grid) li { margin-bottom: 12px; }
 
 .about { font-family: var(--sans); font-size: 0.98rem; color: var(--ink-soft); }
-.about h2 { font-family: var(--sands); }
+.about h2 { font-family: var(--sans); }
 .about h3 { margin-top: 12px; color: var(--ink); }
 .about ul { padding-left: 18px; }
 .about li { margin-bottom: 8px; }
@@ -282,6 +343,7 @@ footer {
   .grid-2 { grid-template-columns: minmax(0, 1fr); }
   .side-text { max-width: none; }
   .stats { grid-template-columns: minmax(0, 1fr); }
+  .takeaway-grid { grid-template-columns: minmax(0, 1fr); }
   .wrap { padding: 0 16px; }
   .card { padding: 16px 14px 12px; }
 }

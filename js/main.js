@@ -18,8 +18,11 @@ const theme = {
     titleFontWeight: 600,
     domainColor: "#9CA3AF",
     tickColor: "#9CA3AF",
-    gridColor: "#EEEAE3"
+    gridColor: "#EFECE6"
   },
+  // decluttering (Storytelling notes: remove what is not signal)
+  axisX: { grid: false, tickSize: 4 },
+  axisY: { domain: false, ticks: false, labelPadding: 6 },
   legend: {
     labelFont: SANS,
     titleFont: SANS,
@@ -54,8 +57,13 @@ const charts = [
   ["#vis10", "js/specs/10_state_streamgraph.vl.json", "wipe-x"],
   ["#vis11", "js/specs/11_field_heatmap.vl.json", "wipe-x"],
   ["#vis12", "js/specs/12_slope_share.vl.json", "wipe-x"],
-  ["#vis13", "js/specs/13_sector_marimekko.vl.json", "wipe-up"]
+  ["#vis13", "js/specs/13_sector_marimekko.vl.json", "wipe-up"],
+  ["#vis14", "js/specs/14_malaysia_index.vl.json", "wipe-x"],
+  ["#vis15", "js/specs/15_malaysia_states.vl.json", "wipe-x"]
 ];
+
+// bump this when files change so browsers fetch the new versions
+const VERSION = "6";
 
 const options = {
   actions: { export: true, source: true, compiled: false, editor: true },
@@ -74,17 +82,69 @@ const EASE = "cubic-bezier(0.22, 0.61, 0.36, 1)";
 const DATA_MARKS = ["line", "area", "rect", "symbol", "rule", "shape", "trail", "arc"]
   .map((t) => `g.mark-${t}.role-mark`).join(",");
 
-function animateClip(groups, from, duration, delay) {
+// All animations use requestAnimationFrame and plain SVG attributes, which work
+// the same way in Safari, Chrome, Firefox and Edge.
+
+function tween(duration, delay, onFrame, onDone) {
+  const start = performance.now() + delay;
+  function frame(now) {
+    const t = Math.max(0, Math.min(1, (now - start) / duration));
+    onFrame(1 - Math.pow(1 - t, 3));          // ease-out cubic
+    if (t < 1) requestAnimationFrame(frame);
+    else if (onDone) onDone();
+  }
+  onFrame(0);
+  requestAnimationFrame(frame);
+}
+
+let clipCount = 0;
+
+// Reveal mark groups with an SVG clipPath whose rectangle grows.
+// direction: "x" (left to right), "up" (bottom to top), "down" (top to bottom)
+function wipe(svg, groups, direction, duration, delay) {
+  const NS = "http://www.w3.org/2000/svg";
+  let defs = svg.querySelector("defs");
+  if (!defs) { defs = document.createElementNS(NS, "defs"); svg.insertBefore(defs, svg.firstChild); }
   groups.forEach((g) => {
-    g.animate([{ clipPath: from }, { clipPath: "inset(0 0 0 0)" }],
-      { duration, delay, easing: EASE, fill: "backwards" });
+    const id = "wipe-clip-" + (++clipCount);
+    const clip = document.createElementNS(NS, "clipPath");
+    clip.setAttribute("id", id);
+    clip.setAttribute("clipPathUnits", "objectBoundingBox");
+    const rect = document.createElementNS(NS, "rect");
+    // a little slack beyond 0..1 so strokes at the edges are not cut off
+    rect.setAttribute("x", "-0.05"); rect.setAttribute("y", "-0.05");
+    rect.setAttribute("width", "1.1"); rect.setAttribute("height", "1.1");
+    clip.appendChild(rect);
+    defs.appendChild(clip);
+    const previous = g.getAttribute("clip-path");
+    g.setAttribute("clip-path", `url(#${id})`);
+    tween(duration, delay, (e) => {
+      const size = 1.1 * e;
+      if (direction === "x") {
+        rect.setAttribute("width", size);
+      } else if (direction === "up") {
+        rect.setAttribute("y", 1.05 - size); rect.setAttribute("height", size);
+      } else {
+        rect.setAttribute("height", size);
+      }
+    }, () => {
+      if (previous) g.setAttribute("clip-path", previous); else g.removeAttribute("clip-path");
+      clip.remove();
+    });
+  });
+}
+
+function fade(nodes, duration, delay, stagger = 0) {
+  nodes.forEach((n, i) => {
+    const target = parseFloat(n.getAttribute("opacity") || "1");
+    tween(duration, delay + i * stagger,
+      (e) => { n.style.opacity = target * e; },
+      () => { n.style.opacity = ""; });
   });
 }
 
 function fadeTexts(svg, delay) {
-  svg.querySelectorAll("g.mark-text.role-mark").forEach((g) => {
-    g.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay, easing: "ease-out", fill: "backwards" });
-  });
+  fade([...svg.querySelectorAll("g.mark-text.role-mark")], 500, delay);
 }
 
 function animateGrow(view) {
@@ -107,32 +167,32 @@ function animateChart(el, kind, view) {
   const svg = el.querySelector("svg");
   if (!svg) return;
   const groups = [...svg.querySelectorAll(DATA_MARKS)];
+  if (reduceMotion) {
+    // reduced motion: no movement, just a short fade
+    fade([svg], 400, 0);
+    return;
+  }
   switch (kind) {
     case "wipe-x":
-      animateClip(groups, "inset(0 100% 0 0)", 1400, 100);
+      wipe(svg, groups, "x", 1400, 100);
       fadeTexts(svg, 1100);
       break;
     case "wipe-up":
-      animateClip(groups, "inset(100% 0 0 0)", 1100, 100);
+      wipe(svg, groups, "up", 1100, 100);
       fadeTexts(svg, 900);
       break;
     case "wipe-down":
-      animateClip(groups, "inset(0 0 100% 0)", 1100, 100);
+      wipe(svg, groups, "down", 1100, 100);
       fadeTexts(svg, 900);
       break;
     case "fade":
-      groups.forEach((g) => g.animate([{ opacity: 0 }, { opacity: 1 }],
-        { duration: 900, delay: 100, easing: "ease-out", fill: "backwards" }));
+      fade(groups, 900, 100);
       fadeTexts(svg, 800);
       break;
     case "bubbles": {
-      // the circles are the only symbol mark; fade them in one by one, largest first
+      // circles fade in one by one, largest first (they are drawn largest first)
       const circles = [...svg.querySelectorAll("g.mark-symbol.role-mark path")];
-      circles.forEach((c, i) => {
-        const target = getComputedStyle(c).opacity;
-        c.animate([{ opacity: 0 }, { opacity: target }],
-          { duration: 500, delay: 200 + i * 35, easing: "ease-out", fill: "backwards" });
-      });
+      fade(circles, 450, 200, 35);
       fadeTexts(svg, 200 + circles.length * 35);
       break;
     }
@@ -217,13 +277,12 @@ const fontsReady = Promise.race([
 
 fontsReady.then(() => charts.forEach(([sel, spec, kind]) => {
   const el = document.querySelector(sel);
-  vegaEmbed(el, spec, options)
+  vegaEmbed(el, spec + "?v=" + VERSION, options)
     .then((result) => {
       if (sel === "#vis04") setUpPlay(result.view);
-      if (reduceMotion) return;
       // hide data marks until the chart is on screen, so the animation is seen
       if (canObserve) {
-        if (kind === "grow") result.view.signal("grow", 0).run();
+        if (kind === "grow" && !reduceMotion) result.view.signal("grow", 0).run();
         else el.style.visibility = "hidden";
       }
       whenVisible(el, () => {
@@ -257,7 +316,7 @@ if (!reduceMotion) {
   document.querySelectorAll(".stat .num[data-count]").forEach(countUp);
 }
 
-const revealTargets = document.querySelectorAll(".card, .side-text, .note, .takeaways li");
+const revealTargets = document.querySelectorAll(".card, .side-text, .note, .next, .takeaways li");
 if (reduceMotion || !canObserve) {
   revealTargets.forEach((n) => n.classList.remove("reveal"));
 } else {

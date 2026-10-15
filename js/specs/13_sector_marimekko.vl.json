@@ -324,6 +324,32 @@
           "field": "x1"
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.country == 'Malaysia' && datum.sector == 'Higher Education'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "dx": 6,
+        "y": -6,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#B3202E"
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Malaysia: 54% university, 39% vocational \u2193"
+        }
+      }
     }
   ],
   "config": {

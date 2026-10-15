@@ -1,0 +1,312 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Indexed line chart: growth since 2005 (2005 = 100) for all international students in Australia and for Malaysian students. Lines are labelled directly instead of using a legend.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/malaysia_index.csv",
+    "format": {
+      "parse": {
+        "year": "number",
+        "students": "number",
+        "index": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          2005,
+          2025
+        ],
+        "zero": false,
+        "nice": false
+      },
+      "axis": {
+        "format": "d",
+        "values": [
+          2005,
+          2010,
+          2015,
+          2020,
+          2025
+        ],
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "index",
+      "type": "quantitative",
+      "title": "Index (2005 = 100)",
+      "scale": {
+        "domain": [
+          0,
+          320
+        ]
+      },
+      "axis": {
+        "values": [
+          0,
+          100,
+          200,
+          300
+        ],
+        "tickCount": 4
+      }
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "start": 2020,
+            "end": 2022
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "color": "#E8E6E1",
+        "opacity": 0.7,
+        "y": 0,
+        "y2": {
+          "expr": "height"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "end"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2005,
+            "v": 100
+          },
+          {
+            "year": 2025,
+            "v": 100
+          }
+        ]
+      },
+      "mark": {
+        "type": "line",
+        "color": "#6B7280",
+        "strokeDash": [
+          3,
+          3
+        ],
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2025,
+            "v": 100,
+            "t": "2005 level"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -4,
+        "dy": -8,
+        "color": "#6B7280",
+        "fontSize": 12
+      },
+      "encoding": {
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "All international students",
+              "Malaysians"
+            ],
+            "range": [
+              "#2F5D8A",
+              "#B3202E"
+            ]
+          }
+        },
+        "detail": {
+          "field": "group"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 30,
+        "opacity": 0
+      },
+      "encoding": {
+        "color": {
+          "field": "group",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "group",
+            "title": "Group"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "format": "d",
+            "title": "Year"
+          },
+          {
+            "field": "students",
+            "type": "quantitative",
+            "format": ",",
+            "title": "Students"
+          },
+          {
+            "field": "index",
+            "type": "quantitative",
+            "format": ".0f",
+            "title": "Index (2005 = 100)"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 60,
+        "opacity": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "group",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025 && datum.group == 'All international students'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -6,
+        "dy": -14,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#2F5D8A"
+      },
+      "encoding": {
+        "text": {
+          "value": "All students: 293 (\u00d72.9)"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025 && datum.group == 'Malaysians'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -6,
+        "dy": 16,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#B3202E"
+      },
+      "encoding": {
+        "text": {
+          "value": "Malaysians: 82 (fewer than 2005)"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2018 && datum.group == 'Malaysians'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -12,
+        "fontSize": 12,
+        "color": "#1F2937",
+        "baseline": "bottom"
+      },
+      "encoding": {
+        "text": {
+          "value": "2018 peak: 26,003"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2018 && datum.group == 'Malaysians'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 45,
+        "color": "#B3202E",
+        "opacity": 1
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
