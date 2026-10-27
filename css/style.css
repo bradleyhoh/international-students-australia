@@ -187,6 +187,32 @@ section.wrap { padding-top: 72px; }
 .unit-stu { background: #E6E9EB; color: #3B4148; border: 1px solid #E6E9EB; }
 .unit-enr { background: transparent; color: #3B4148; border: 1px dashed #8A9299; }
 
+/* ---------- section openings in two columns (less empty space on wide screens) ---------- */
+/* headline + lead paragraph on the left, the section's first chart on the right */
+.intro-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr);
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+.intro-row > .card { margin-bottom: 0; }
+.intro-text { padding-top: 6px; }
+.intro-text .lede { margin-bottom: 0; }
+/* headline on the left, lead paragraph on the right, above a full-width chart */
+.head-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 16px 40px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+.head-split h2 { margin-bottom: 0; }
+.head-split .lede { margin: 0; }
+@media (max-width: 900px) {
+  .intro-row, .head-split { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
+
 /* colour-coded words: match the chart colours so text can replace some legends */
 .c-my { color: var(--malaysia); font-weight: 700; }
 .c-teal { color: var(--teal); font-weight: 600; }
@@ -229,6 +255,7 @@ section.wrap { padding-top: 72px; }
 }
 .note p { margin: 0; max-width: 66ch; }
 .note.callout-my { border-left: 4px solid var(--malaysia); }
+.note-inline { margin-bottom: 18px; font-size: 0.98rem; }
 
 /* play button for the flow map */
 .play {

@@ -39,16 +39,20 @@
       "data": {
         "values": [
           {
-            "x": 2021,
-            "label": "Borders closed"
+            "x": 2020,
+            "label": "Borders\nclosed"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "y": 8,
+        "y": 6,
         "fontSize": 12,
-        "color": "#6B7280"
+        "color": "#6B7280",
+        "align": "left",
+        "dx": 4,
+        "baseline": "top",
+        "lineBreak": "\n"
       },
       "encoding": {
         "x": {
@@ -236,7 +240,7 @@
           {
             "year": 2024,
             "students": 850837,
-            "label": "2024: record 851k"
+            "label": "Record: 851k"
           }
         ]
       },
@@ -272,7 +276,8 @@
             "dy": -14,
             "fontSize": 12,
             "color": "#1F2A37",
-            "fontWeight": 400
+            "fontWeight": 400,
+            "lineBreak": "\n"
           },
           "encoding": {
             "x": {
@@ -301,7 +306,8 @@
             "dy": -8,
             "fontSize": 12,
             "color": "#1F2A37",
-            "fontWeight": 400
+            "fontWeight": 400,
+            "lineBreak": "\n"
           },
           "encoding": {
             "x": {
@@ -330,7 +336,8 @@
             "dy": 14,
             "fontSize": 12,
             "color": "#1F2A37",
-            "fontWeight": 400
+            "fontWeight": 400,
+            "lineBreak": "\n"
           },
           "encoding": {
             "x": {
@@ -354,12 +361,13 @@
           ],
           "mark": {
             "type": "text",
-            "align": "right",
-            "dx": -8,
-            "dy": -6,
+            "align": "center",
+            "dx": 0,
+            "dy": -12,
             "fontSize": 12,
             "color": "#1F2A37",
-            "fontWeight": 400
+            "fontWeight": 400,
+            "lineBreak": "\n"
           },
           "encoding": {
             "x": {

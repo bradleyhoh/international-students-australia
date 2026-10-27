@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
   <script>document.documentElement.classList.add("js");</script>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
@@ -45,19 +45,21 @@
 
   <!-- ===== Section 1 ===== -->
   <section id="growth" class="wrap">
-    <p class="section-no"></p>
-    <h2>Almost three times as many students as in 2005</h2>
-    <p class="lede">In 2005 Australia hosted about 289,000 international students. By 2024 it had a record 851,000. The climb was not smooth: a slide after 2009, a long boom in the 2010s, and a sharp fall when Australia closed its borders during COVID-19.</p>
-
-    <figure class="card">
-      <figcaption>
+    <div class="intro-row">
+      <div class="intro-text">
+        <h2>Almost three times as many students as in 2005</h2>
+        <p class="lede">In 2005 Australia hosted about 289,000 international students. By 2024 it had a record 851,000. The climb was not smooth: a slide after 2009, a long boom in the 2010s, and a sharp fall when Australia closed its borders during COVID-19.</p>
+      </div>
+      <figure class="card">
+        <figcaption>
           <span class="unit unit-stu">Counts students</span>
-        <h3>International students in Australia, 2005–2025</h3>
-        <p>Students counted once each in December. The <span class="c-ochre">dashed ochre line</span> shows students who started their first course that year. Hover for values.</p>
-      </figcaption>
-      <div id="vis01" class="vis"></div>
-      <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
-    </figure>
+          <h3>International students in Australia, 2005–2025</h3>
+          <p>Students counted once each in December. The <span class="c-ochre">dashed ochre line</span> shows students who started their first course that year. Hover for values.</p>
+        </figcaption>
+        <div id="vis01" class="vis"></div>
+        <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
+      </figure>
+    </div>
 
     <div class="grid-2">
       <figure class="card">
@@ -78,10 +80,6 @@
       </div>
     </div>
 
-    <div class="note">
-      <p><strong>Students or enrolments?</strong> A <em>student</em> is one person. An <em>enrolment</em> is one course. One student can hold several enrolments, for example an English course followed by a degree. So enrolment totals (about 1.05 million in 2025) are higher than student totals (844,000). The tag above each chart title says which one it counts.</p>
-    </div>
-
     <div class="grid-2">
       <figure class="card">
         <figcaption>
@@ -93,6 +91,9 @@
         <p class="source">Source: Department of Education, enrolments by sector, December 2025.</p>
       </figure>
       <div class="side-text">
+        <div class="note note-inline">
+          <p><strong>Students or enrolments?</strong> A <em>student</em> is one person. An <em>enrolment</em> is one course. One student can hold several enrolments, for example an English course followed by a degree. So enrolment totals (about 1.05 million in 2025) are higher than student totals (844,000). The tag above each chart title says which one it counts.</p>
+        </div>
         <p>Just over half of international enrolments are at universities (<span class="c-teal">Higher Education</span>). About a third are vocational courses (<span class="c-ochre">VET</span>).</p>
         <p>English-language courses (<span class="c-slate">ELICOS</span>) are a smaller slice, but they swing the most. They are usually the first course a student takes, so they react first when borders or visa settings change.</p>
       </div>
@@ -113,9 +114,10 @@
 
   <!-- ===== Section 2 ===== -->
   <section id="origins" class="wrap">
-    <p class="section-no"></p>
-    <h2>From East Asia to South Asia</h2>
-    <p class="lede">China has been the largest source every year since 2005. What changed is who comes next: India, Nepal, Vietnam and the Philippines now follow it. Malaysia, a top-five source every year from 2005 to 2018, has fallen to 13th.</p>
+    <div class="head-split">
+      <h2>From East Asia to South Asia</h2>
+      <p class="lede">China has been the largest source every year since 2005. What changed is who comes next: India, Nepal, Vietnam and the Philippines now follow it. Malaysia, a top-five source every year from 2005 to 2018, has fallen to 13th.</p>
+    </div>
 
     <figure class="card">
       <figcaption>
@@ -173,13 +175,14 @@
 
   <!-- ===== Section 3 ===== -->
   <section id="arrivals" class="wrap">
-    <p class="section-no"></p>
-    <h2>New arrivals have peaked for most countries</h2>
-    <p class="lede">New-student numbers show where the pipeline is heading. After a rebound in 2023, new arrivals fell in 2024 and 2025 for most large source countries. Malaysia's intake peaked earlier, in 2017, and is now at about 38% of that level.</p>
+    <div class="head-split">
+      <h2>New arrivals have peaked for most countries</h2>
+      <p class="lede">New-student numbers show where the pipeline is heading. After a rebound in 2023, new arrivals fell in 2024 and 2025 for most large source countries. Malaysia's intake peaked earlier, in 2017, and is now at about 38% of that level.</p>
+    </div>
 
     <figure class="card">
       <figcaption>
-          <span class="unit unit-stu">Counts new students</span>
+        <span class="unit unit-stu">Counts new students</span>
         <h3>New students each year, as % of each country's best year</h3>
         <p>Rows are the 12 largest source countries plus <span class="c-my">Malaysia</span>, ordered by size. Comparing each country with its own peak lets small and large countries share one colour scale. Outlined: <span class="c-my">Malaysia's</span> peak in 2017, and Colombia's peak in 2023 followed by a 93% fall by 2025.</p>
       </figcaption>
@@ -192,9 +195,10 @@
 
   <!-- ===== Section 4 ===== -->
   <section id="places" class="wrap">
-    <p class="section-no"></p>
-    <h2>Two inner cities hold four in ten enrolments</h2>
-    <p class="lede">New South Wales and Victoria have hosted about two-thirds of international students for twenty years. Within them, students cluster in a handful of inner-city areas. Malaysians lean even more towards Melbourne: almost half of them study in Victoria.</p>
+    <div class="head-split">
+      <h2>Two inner cities hold four in ten enrolments</h2>
+      <p class="lede">New South Wales and Victoria have hosted about two-thirds of international students for twenty years. Within them, students cluster in a handful of inner-city areas. Malaysians lean even more towards Melbourne: almost half of them study in Victoria.</p>
+    </div>
 
     <div class="grid-2">
       <figure class="card">
@@ -242,9 +246,10 @@
 
   <!-- ===== Section 5 ===== -->
   <section id="fields" class="wrap">
-    <p class="section-no"></p>
-    <h2>What they study depends on where they come from</h2>
-    <p class="lede">Most Chinese and Bangladeshi students are at university. Most Filipino, Colombian and Brazilian students take vocational or English courses. Malaysians sit in between: just over half at university and almost 40% in vocational courses.</p>
+    <div class="head-split">
+      <h2>What they study depends on where they come from</h2>
+      <p class="lede">Most Chinese and Bangladeshi students are at university. Most Filipino, Colombian and Brazilian students take vocational or English courses. Malaysians sit in between: just over half at university and almost 40% in vocational courses.</p>
+    </div>
 
     <figure class="card">
       <figcaption>
@@ -311,6 +316,6 @@
   <div class="wrap">By: Bradley Hoh Lok Yew</div>
 </footer>
 
-<script src="js/main.js?v=8"></script>
+<script src="js/main.js?v=9"></script>
 </body>
 </html>
