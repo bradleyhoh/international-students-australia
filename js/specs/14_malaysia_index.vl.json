@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Indexed line chart: growth since 2005 (2005 = 100) for all international students in Australia and for Malaysian students. Lines are labelled directly instead of using a legend.",
   "width": "container",
-  "height": 300,
+  "height": 270,
   "data": {
     "url": "data/malaysia_index.csv",
     "format": {

@@ -2,7 +2,11 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Slope chart: each country's share of all international students in Australia, 2015 vs 2025, on a linear scale. The top 6 sources in each year plus Malaysia. Where values are close, labels are nudged apart and joined to their points by thin leader lines.",
   "width": "container",
-  "height": 460,
+  "height": 420,
+  "params": [
+    {"name": "gapPx", "expr": "max(min(width - 250, 300), 80)"},
+    {"name": "sidePx", "expr": "(width - gapPx) / 2"}
+  ],
   "data": {
     "url": "data/slope_share.csv",
     "format": {
@@ -54,10 +58,8 @@
       "field": "year",
       "type": "quantitative",
       "scale": {
-        "domain": [
-          2008.5,
-          2031.5
-        ],
+        "domainMin": {"expr": "2015 - sidePx * 10 / gapPx"},
+        "domainMax": {"expr": "2025 + sidePx * 10 / gapPx"},
         "zero": false,
         "nice": false
       },
@@ -93,12 +95,7 @@
           "#8A919C"
         ]
       },
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "labelLimit": 220,
-        "columns": 2
-      }
+      "legend": null
     }
   },
   "layer": [

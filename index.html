@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=9">
+  <link rel="stylesheet" href="css/style.css?v=10">
   <script>document.documentElement.classList.add("js");</script>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
@@ -61,7 +61,7 @@
       </figure>
     </div>
 
-    <div class="grid-2">
+    <div class="grid-2 chart-wide">
       <figure class="card">
         <figcaption>
           <span class="unit unit-stu">Counts students</span>
@@ -71,10 +71,10 @@
         <div id="vis14" class="vis"></div>
         <p class="source">Source: Department of Education, International Student Data, December 2005–2025.</p>
       </figure>
-      <div class="side-text">
-        <div class="kpis">
-          <div class="kpi"><span class="kpi-num c-teal">×2.9</span><span class="kpi-lbl">all international students, 2005 to 2025</span></div>
-          <div class="kpi"><span class="kpi-num c-my">×0.8</span><span class="kpi-lbl">Malaysian students, 2005 to 2025</span></div>
+      <div class="side-text side-rail">
+        <div class="kpis kpi-stack">
+          <div class="kpi k-teal"><span class="kpi-num c-teal">×2.9</span><span class="kpi-lbl">All international students, 2005 to 2025</span></div>
+          <div class="kpi k-my"><span class="kpi-num c-my">×0.8</span><span class="kpi-lbl">Malaysian students, 2005 to 2025</span></div>
         </div>
         <p>While the total nearly tripled, the number of Malaysians fell from 18,074 to 14,895. It peaked at 26,003 in 2018 and has stayed well below that level since COVID-19.</p>
       </div>
@@ -130,19 +130,24 @@
       <p class="source">Source: Department of Education, International Student Data; country positions from Natural Earth.</p>
     </figure>
 
-    <div class="grid-2">
+    <div class="grid-2 chart-wide">
       <figure class="card">
         <figcaption>
           <span class="unit unit-stu">Counts students</span>
           <h3>Share of all international students, 2015 vs 2025</h3>
-          <p>The 6 largest sources in 2015 and in 2025, plus <span class="c-my">Malaysia</span>. Where values are close, labels are nudged apart and joined to their dots by thin lines.</p>
+          <p>The 6 largest sources in 2015 and in 2025, plus <span class="c-my">Malaysia</span>. <span class="c-teal">Teal</span> = larger share in 2025, <span class="c-grey">grey</span> = smaller. Close labels are joined to their dots by thin lines.</p>
         </figcaption>
         <div id="vis12" class="vis"></div>
         <p class="source">Source: Department of Education, International Student Data, December 2015 and 2025.</p>
       </figure>
-      <div class="side-text">
-        <p>In ten years India's share rose from 11% to 17%, and Nepal's almost tripled, from 3% to 8%. The Philippines and Bangladesh grew just as fast from a smaller base.</p>
-        <p class="malaysia-callout"><span class="c-my">Malaysia's</span> share fell by more than half, from 4.1% to 1.8%, even though Australia as a whole grew. South Korea followed the same path.</p>
+      <div class="side-text side-rail">
+        <div class="kpis kpi-stack">
+          <div class="kpi k-grey"><span class="kpi-num c-grey">27.3% <span class="kpi-arrow">→</span> 23.1%</span><span class="kpi-lbl">China's share: still the largest, but smaller</span></div>
+          <div class="kpi k-teal"><span class="kpi-num c-teal">10.7% <span class="kpi-arrow">→</span> 16.8%</span><span class="kpi-lbl">India's share: the biggest gain</span></div>
+          <div class="kpi k-teal"><span class="kpi-num c-teal">3.0% <span class="kpi-arrow">→</span> 8.3%</span><span class="kpi-lbl">Nepal's share: almost three times larger</span></div>
+          <div class="kpi k-my"><span class="kpi-num c-my">4.1% <span class="kpi-arrow">→</span> 1.8%</span><span class="kpi-lbl">Malaysia's share: down by more than half</span></div>
+        </div>
+        <p>The Philippines and Bangladesh grew just as fast from a smaller base. <span class="c-my">Malaysia's</span> share fell even though Australia as a whole grew, and South Korea followed the same path.</p>
       </div>
     </div>
 
@@ -316,6 +321,6 @@
   <div class="wrap">By: Bradley Hoh Lok Yew</div>
 </footer>
 
-<script src="js/main.js?v=9"></script>
+<script src="js/main.js?v=10"></script>
 </body>
 </html>
