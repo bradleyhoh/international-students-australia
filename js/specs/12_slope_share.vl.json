@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Slope chart: each country's share of all international students in Australia, 2015 vs 2025. Log scale, so equal slopes mean equal percentage change.",
+  "description": "Slope chart: each country's share of all international students in Australia, 2015 vs 2025, on a linear scale. The top 6 sources in each year plus Malaysia. Where values are close, labels are nudged apart and joined to their points by thin leader lines.",
   "width": "container",
-  "height": 420,
+  "height": 460,
   "data": {
     "url": "data/slope_share.csv",
     "format": {
@@ -43,6 +43,10 @@
     {
       "calculate": "datum.year == 2015 ? datum.country + '  ' + format(datum.share, '.1f') + '%' : format(datum.share, '.1f') + '%  ' + datum.country",
       "as": "label"
+    },
+    {
+      "calculate": "datum.year == 2015 ? 2013.9 : 2026.1",
+      "as": "label_x"
     }
   ],
   "encoding": {
@@ -101,21 +105,21 @@
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 2.5
+        "strokeWidth": 2.2
       },
       "encoding": {
         "y": {
-          "field": "share",
           "type": "quantitative",
           "scale": {
-            "type": "log",
             "domain": [
-              0.9,
+              0,
               30
             ],
-            "nice": false
+            "nice": false,
+            "zero": true
           },
-          "axis": null
+          "axis": null,
+          "field": "share"
         },
         "detail": {
           "field": "country"
@@ -131,14 +135,51 @@
     },
     {
       "mark": {
+        "type": "rule",
+        "strokeWidth": 0.8,
+        "opacity": 0.7
+      },
+      "encoding": {
+        "y": {
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              30
+            ],
+            "nice": false,
+            "zero": true
+          },
+          "axis": null,
+          "field": "share"
+        },
+        "x2": {
+          "field": "label_x"
+        },
+        "y2": {
+          "field": "label_y"
+        }
+      }
+    },
+    {
+      "mark": {
         "type": "circle",
         "size": 55,
         "opacity": 1
       },
       "encoding": {
         "y": {
-          "field": "share",
-          "type": "quantitative"
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              30
+            ],
+            "nice": false,
+            "zero": true
+          },
+          "axis": null,
+          "field": "share"
         },
         "tooltip": [
           {
@@ -169,23 +210,34 @@
     {
       "transform": [
         {
-          "filter": "datum.year == 2015"
-        },
-        {
-          "filter": "datum.country != 'Malaysia'"
+          "filter": "datum.year == 2015 && datum.country != 'Malaysia'"
         }
       ],
       "mark": {
         "type": "text",
         "align": "right",
-        "dx": -10,
+        "dx": -3,
         "baseline": "middle",
-        "fontSize": 12
+        "fontSize": 12,
+        "fontWeight": 400
       },
       "encoding": {
-        "y": {
-          "field": "label_y",
+        "x": {
+          "field": "label_x",
           "type": "quantitative"
+        },
+        "y": {
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              30
+            ],
+            "nice": false,
+            "zero": true
+          },
+          "axis": null,
+          "field": "label_y"
         },
         "text": {
           "field": "label"
@@ -195,24 +247,34 @@
     {
       "transform": [
         {
-          "filter": "datum.year == 2015"
-        },
-        {
-          "filter": "datum.country == 'Malaysia'"
+          "filter": "datum.year == 2015 && datum.country == 'Malaysia'"
         }
       ],
       "mark": {
         "type": "text",
         "align": "right",
-        "dx": -10,
+        "dx": -3,
         "baseline": "middle",
         "fontSize": 12,
         "fontWeight": 700
       },
       "encoding": {
-        "y": {
-          "field": "label_y",
+        "x": {
+          "field": "label_x",
           "type": "quantitative"
+        },
+        "y": {
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              30
+            ],
+            "nice": false,
+            "zero": true
+          },
+          "axis": null,
+          "field": "label_y"
         },
         "text": {
           "field": "label"
@@ -222,23 +284,34 @@
     {
       "transform": [
         {
-          "filter": "datum.year == 2025"
-        },
-        {
-          "filter": "datum.country != 'Malaysia'"
+          "filter": "datum.year == 2025 && datum.country != 'Malaysia'"
         }
       ],
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 10,
+        "dx": 3,
         "baseline": "middle",
-        "fontSize": 12
+        "fontSize": 12,
+        "fontWeight": 400
       },
       "encoding": {
-        "y": {
-          "field": "label_y",
+        "x": {
+          "field": "label_x",
           "type": "quantitative"
+        },
+        "y": {
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              30
+            ],
+            "nice": false,
+            "zero": true
+          },
+          "axis": null,
+          "field": "label_y"
         },
         "text": {
           "field": "label"
@@ -248,24 +321,34 @@
     {
       "transform": [
         {
-          "filter": "datum.year == 2025"
-        },
-        {
-          "filter": "datum.country == 'Malaysia'"
+          "filter": "datum.year == 2025 && datum.country == 'Malaysia'"
         }
       ],
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 10,
+        "dx": 3,
         "baseline": "middle",
         "fontSize": 12,
         "fontWeight": 700
       },
       "encoding": {
-        "y": {
-          "field": "label_y",
+        "x": {
+          "field": "label_x",
           "type": "quantitative"
+        },
+        "y": {
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              30
+            ],
+            "nice": false,
+            "zero": true
+          },
+          "axis": null,
+          "field": "label_y"
         },
         "text": {
           "field": "label"

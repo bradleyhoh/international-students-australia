@@ -182,8 +182,9 @@ field[["country", "field", "field_short", "enrolments", "total", "share"]].to_cs
 
 # ---------- 6. Slope chart: share of all students, 2015 vs 2025 ----------
 total = national.set_index("year").students
-top8 = lambda y: nat[nat.Year == y].nsmallest(8, "rank").Nationality.tolist()
-slope_keep = list(dict.fromkeys(top8(2015) + top8(LATEST) + [MALAYSIA]))
+# the top 6 sources in 2015 and in 2025, plus Malaysia (9 countries), so a linear scale stays readable
+top6 = lambda y: nat[nat.Year == y].nsmallest(6, "rank").Nationality.tolist()
+slope_keep = list(dict.fromkeys(top6(2015) + top6(LATEST) + [MALAYSIA]))
 slope = nat[nat.Year.isin([2015, LATEST]) & nat.Nationality.isin(slope_keep)][["Year", "Nationality", "Students"]].copy()
 slope["share"] = (slope.Students / slope.Year.map(total) * 100).round(1)
 slope["country"] = slope.Nationality.map(short)
@@ -198,20 +199,18 @@ def dodge(values, gap):
             if pos[k] - pos[k - 1] < gap:
                 mid = (pos[k] + pos[k - 1]) / 2
                 pos[k - 1], pos[k] = mid - gap / 2, mid + gap / 2
-        pos = [max(p, -1) for p in pos]
+        pos = [max(p, 0) for p in pos]
     out = [0] * len(values)
     for k, i in enumerate(order):
         out[i] = round(pos[k], 2)
     return out
 
 
-# The chart uses a log scale, so labels are spread in log space (0.056 = about 14 px on a 420 px tall chart)
-import math
+# Linear scale 0-30% on a 460 px tall chart: 1 percentage point is about 15 px, so labels need 1.0 apart.
 slope["label_y"] = 0.0
 for y in (2015, LATEST):
     m = slope.Year == y
-    logs = dodge([math.log10(v) for v in slope.loc[m, "share"]], 0.056)
-    slope.loc[m, "label_y"] = [round(10 ** v, 3) for v in logs]
+    slope.loc[m, "label_y"] = dodge(slope.loc[m, "share"].tolist(), 1.0)
 slope = slope.rename(columns={"Year": "year", "Students": "students"})
 slope[["year", "country", "students", "share", "label_y"]].to_csv(OUT / "slope_share.csv", index=False)
 

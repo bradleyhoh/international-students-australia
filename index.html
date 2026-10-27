@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
   <script>document.documentElement.classList.add("js");</script>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
@@ -51,6 +51,7 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-stu">Counts students</span>
         <h3>International students in Australia, 2005–2025</h3>
         <p>Students counted once each in December. The <span class="c-ochre">dashed ochre line</span> shows students who started their first course that year. Hover for values.</p>
       </figcaption>
@@ -61,6 +62,7 @@
     <div class="grid-2">
       <figure class="card">
         <figcaption>
+          <span class="unit unit-stu">Counts students</span>
           <h3>Growth since 2005: everyone vs Malaysians</h3>
           <p>Index, 2005 = 100. <span class="c-teal">All international students</span> compared with <span class="c-my">Malaysians</span>.</p>
         </figcaption>
@@ -77,12 +79,13 @@
     </div>
 
     <div class="note">
-      <p><strong>Students or enrolments?</strong> A <em>student</em> is one person. An <em>enrolment</em> is one course. One student can hold several enrolments, for example an English course followed by a degree. So enrolment totals (about 1.05 million in 2025) are higher than student totals (844,000). Each chart says which one it counts.</p>
+      <p><strong>Students or enrolments?</strong> A <em>student</em> is one person. An <em>enrolment</em> is one course. One student can hold several enrolments, for example an English course followed by a degree. So enrolment totals (about 1.05 million in 2025) are higher than student totals (844,000). The tag above each chart title says which one it counts.</p>
     </div>
 
     <div class="grid-2">
       <figure class="card">
         <figcaption>
+          <span class="unit unit-enr">Counts enrolments (courses)</span>
           <h3>Out of every 100 enrolments in 2025…</h3>
           <p>Each square is 1% of international enrolments, by education sector.</p>
         </figcaption>
@@ -97,8 +100,9 @@
 
     <figure class="card">
       <figcaption>
-        <h3>Enrolments by sector, 2018–2025</h3>
-        <p>Each panel has its own scale so the shape of every line can be seen. Shaded years: borders closed.</p>
+          <span class="unit unit-enr">Counts enrolments (courses)</span>
+        <h3>Enrolments by sector, 2018–2025 (2018 = 100)</h3>
+        <p>Each sector is indexed to its own 2018 level (= 100) and all five panels share one scale, so growth and falls can be compared directly. Dashed line = 2018 level. Shaded years: borders closed. Hover for the actual number of enrolments.</p>
       </figcaption>
       <div id="vis03" class="vis"></div>
       <p class="source">Source: Department of Education, enrolments by sector, December 2018–2025.</p>
@@ -115,8 +119,9 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-stu">Counts students</span>
         <h3>Where Australia's international students come from</h3>
-        <p>Curved lines run from the 30 largest source countries to Australia; thicker lines carry more students. Press Play or drag the slider to step through 2005–2025. <span class="c-my">Malaysia is in red.</span></p>
+        <p>Curved lines run from the 30 largest source countries to Australia; thicker lines carry more students. Each flow arrives on the side of Australia facing its origin, so the lines don't all pile onto one point. Hover a line or dot to isolate one country; press Play or drag the slider to step through 2005–2025. <span class="c-my">Malaysia is in red.</span></p>
       </figcaption>
       <div id="vis04" class="vis"></div>
       <button type="button" class="play" id="play04" aria-pressed="false">▶ Play 2005–2025</button>
@@ -126,8 +131,9 @@
     <div class="grid-2">
       <figure class="card">
         <figcaption>
+          <span class="unit unit-stu">Counts students</span>
           <h3>Share of all international students, 2015 vs 2025</h3>
-          <p>Log scale: lines with the same slope changed by the same percentage.</p>
+          <p>The 6 largest sources in 2015 and in 2025, plus <span class="c-my">Malaysia</span>. Where values are close, labels are nudged apart and joined to their dots by thin lines.</p>
         </figcaption>
         <div id="vis12" class="vis"></div>
         <p class="source">Source: Department of Education, International Student Data, December 2015 and 2025.</p>
@@ -140,6 +146,7 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-stu">Counts students</span>
         <h3>Rank among source countries, 2005–2025</h3>
         <p>1 = largest source. Today's top 10 and <span class="c-my">Malaysia</span>. Hover a line to follow a country.</p>
       </figcaption>
@@ -149,6 +156,7 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-stu">Counts students, per 100,000 residents</span>
         <h3>Relative to home population, small countries stand out</h3>
         <p>Students in Australia per 100,000 residents of each home country, 2025. Darker = a larger share of that country's population is studying in Australia. Grey = destination or no data. <span class="c-my">Malaysia is outlined in red.</span></p>
       </figcaption>
@@ -171,6 +179,7 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-stu">Counts new students</span>
         <h3>New students each year, as % of each country's best year</h3>
         <p>Rows are the 12 largest source countries plus <span class="c-my">Malaysia</span>, ordered by size. Comparing each country with its own peak lets small and large countries share one colour scale. Outlined: <span class="c-my">Malaysia's</span> peak in 2017, and Colombia's peak in 2023 followed by a 93% fall by 2025.</p>
       </figcaption>
@@ -190,6 +199,7 @@
     <div class="grid-2">
       <figure class="card">
         <figcaption>
+          <span class="unit unit-stu">Counts students, per 1,000 residents</span>
           <h3>Students per 1,000 residents, 2025</h3>
           <p>All international students, by state or territory of study. The ACT has the most per resident (39 per 1,000); Tasmania the fewest (14).</p>
         </figcaption>
@@ -198,6 +208,7 @@
       </figure>
       <figure class="card">
         <figcaption>
+          <span class="unit unit-stu">Counts students</span>
           <h3>Where Malaysians study, 2025</h3>
           <p>Share of <span class="c-my">Malaysian students</span> in each state, compared with <span class="c-teal">all international students</span>. Victoria hosts 48% of Malaysians but only 30% of all international students; New South Wales is the reverse.</p>
         </figcaption>
@@ -208,6 +219,7 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-enr">Counts enrolments (courses)</span>
         <h3>Enrolments by region (ABS SA4), 2025</h3>
         <p>Each circle is one statistical region with at least 1,000 enrolments (47 regions); circle area = enrolments. <span class="c-teal">Teal = capital city</span>; <span class="c-ochre">ochre = regional</span>. The 38 smaller regions hold under 1% of enrolments.</p>
       </figcaption>
@@ -217,6 +229,7 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-stu">Counts students</span>
         <h3>Students by state of study, 2005–2025</h3>
         <p>Total thickness = all international students. Click a state in the legend to highlight it. Western Australia more than doubled between 2021 and 2025, from 33,000 to 73,000 students.</p>
       </figcaption>
@@ -235,6 +248,7 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-enr">Counts enrolments (courses)</span>
         <h3>Education sector by country, 2025</h3>
         <p>Column width = the country's total enrolments; segments = share of those enrolments in each sector. Numbers are percentages. The 10 largest source countries plus <span class="c-my">Malaysia</span>.</p>
       </figcaption>
@@ -244,6 +258,7 @@
 
     <figure class="card">
       <figcaption>
+          <span class="unit unit-enr">Counts university enrolments (courses)</span>
         <h3>Field of study by country, universities, 2025</h3>
         <p>Numbers are % of each country's university enrolments; the outlined cell is each country's most common field. Rows add up to roughly 100% (mixed-field courses and the very small hospitality field are left out). Malaysians have the most even spread: business first (26%), then IT, science, health and society and culture at around 10–12% each.</p>
       </figcaption>
@@ -296,6 +311,6 @@
   <div class="wrap">By: Bradley Hoh Lok Yew</div>
 </footer>
 
-<script src="js/main.js?v=7"></script>
+<script src="js/main.js?v=8"></script>
 </body>
 </html>

@@ -1,9 +1,33 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Small multiples: enrolments by education sector, 2018-2025, each on its own scale.",
+  "description": "Small multiples: international enrolments by education sector, 2018-2025, each indexed to its own 2018 level (2018 = 100) and drawn on one shared scale so sectors can be compared directly.",
   "data": {
-    "url": "data/sector_trend.csv"
+    "url": "data/sector_trend.csv",
+    "format": {
+      "parse": {
+        "year": "number",
+        "enrolments": "number"
+      }
+    }
   },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "argmin",
+          "field": "year",
+          "as": "first"
+        }
+      ],
+      "groupby": [
+        "sector"
+      ]
+    },
+    {
+      "calculate": "datum.enrolments / datum.first.enrolments * 100",
+      "as": "index"
+    }
+  ],
   "facet": {
     "field": "sector",
     "type": "nominal",
@@ -25,7 +49,7 @@
   "columns": 5,
   "spec": {
     "width": 150,
-    "height": 120,
+    "height": 130,
     "layer": [
       {
         "data": {
@@ -46,11 +70,39 @@
             "field": "start",
             "type": "quantitative",
             "scale": {
-              "zero": false
+              "domain": [
+                2018,
+                2025
+              ],
+              "zero": false,
+              "nice": false
             }
           },
           "x2": {
             "field": "end"
+          }
+        }
+      },
+      {
+        "data": {
+          "values": [
+            {
+              "v": 100
+            }
+          ]
+        },
+        "mark": {
+          "type": "rule",
+          "color": "#6B7280",
+          "strokeDash": [
+            3,
+            3
+          ]
+        },
+        "encoding": {
+          "y": {
+            "field": "v",
+            "type": "quantitative"
           }
         }
       },
@@ -75,7 +127,8 @@
                 2018,
                 2025
               ],
-              "zero": false
+              "zero": false,
+              "nice": false
             },
             "axis": {
               "format": "d",
@@ -88,15 +141,24 @@
             }
           },
           "y": {
-            "field": "enrolments",
+            "field": "index",
             "type": "quantitative",
             "title": null,
             "scale": {
-              "zero": true
+              "domain": [
+                0,
+                170
+              ],
+              "nice": false
             },
             "axis": {
-              "format": "~s",
-              "tickCount": 3
+              "values": [
+                0,
+                50,
+                100,
+                150
+              ],
+              "grid": true
             }
           },
           "tooltip": [
@@ -114,7 +176,13 @@
               "field": "enrolments",
               "type": "quantitative",
               "format": ",",
-              "title": "Enrolments"
+              "title": "Enrolments (courses)"
+            },
+            {
+              "field": "index",
+              "type": "quantitative",
+              "format": ".0f",
+              "title": "Index (2018 = 100)"
             }
           ]
         }
@@ -122,79 +190,119 @@
       {
         "transform": [
           {
-            "filter": "(datum.sector == 'ELICOS' && datum.year == 2021) || (datum.sector == 'Higher Education' && datum.year == 2025)"
-          },
-          {
-            "calculate": "datum.sector == 'ELICOS' ? '\u221273% vs 2019' : 'Highest: 543k'",
-            "as": "note"
+            "filter": "datum.sector == 'Higher Education' && datum.year == 2025"
           }
         ],
-        "layer": [
-          {
-            "transform": [
-              {
-                "filter": "datum.sector == 'ELICOS'"
-              }
-            ],
-            "mark": {
-              "type": "text",
-              "align": "left",
-              "dx": 6,
-              "dy": 4,
-              "fontSize": 12,
-              "fontWeight": 600,
-              "color": "#1F2937"
-            },
-            "encoding": {
-              "x": {
-                "field": "year",
-                "type": "quantitative"
-              },
-              "y": {
-                "field": "enrolments",
-                "type": "quantitative"
-              },
-              "text": {
-                "field": "note"
-              }
-            }
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "dx": -4,
+          "dy": -10,
+          "fontSize": 12,
+          "fontWeight": 600,
+          "color": "#1F2937"
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative"
           },
-          {
-            "transform": [
-              {
-                "filter": "datum.sector == 'Higher Education'"
-              }
-            ],
-            "mark": {
-              "type": "text",
-              "align": "right",
-              "dx": -4,
-              "dy": -10,
-              "fontSize": 12,
-              "fontWeight": 600,
-              "color": "#1F2937"
-            },
-            "encoding": {
-              "x": {
-                "field": "year",
-                "type": "quantitative"
-              },
-              "y": {
-                "field": "enrolments",
-                "type": "quantitative"
-              },
-              "text": {
-                "field": "note"
-              }
-            }
+          "y": {
+            "field": "index",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "136 (+36%)"
           }
-        ]
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.sector == 'VET' && datum.year == 2024"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "dx": -6,
+          "dy": -8,
+          "fontSize": 12,
+          "fontWeight": 600,
+          "color": "#1F2937"
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "index",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "158 peak"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.sector == 'ELICOS' && datum.year == 2021"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "dx": 6,
+          "dy": 4,
+          "fontSize": 12,
+          "fontWeight": 600,
+          "color": "#1F2937"
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "index",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "29 (−71%)"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.sector == 'Non-award' && datum.year == 2021"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "dx": 6,
+          "dy": 4,
+          "fontSize": 12,
+          "fontWeight": 600,
+          "color": "#1F2937"
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "index",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "25 (−75%)"
+          }
+        }
       }
     ]
-  },
-  "resolve": {
-    "scale": {
-      "y": "independent"
-    }
   }
 }

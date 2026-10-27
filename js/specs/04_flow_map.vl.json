@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Origin-destination flow map: students travelling from the 30 largest source countries to Australia. Flows are curved and thin flows are drawn above thick ones to reduce overlaps (Jenny et al. 2018). Line width = students. Use the slider to change the year.",
+  "description": "Origin-destination flow map: students travelling from the 30 largest source countries to Australia. Curved flows arrive on the side of Australia facing their origin, so they do not all pile onto one point; thin flows are drawn above thick ones (Jenny et al. 2018). Line width = students. Hover a flow or dot to isolate one country. Use the slider or Play to change the year.",
   "width": "container",
   "height": 430,
   "params": [
@@ -57,6 +57,26 @@
     },
     {
       "data": {
+        "url": "data/geo/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id == '036'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#C9CED2",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.4
+      }
+    },
+    {
+      "data": {
         "url": "data/flows.csv",
         "format": {
           "parse": {
@@ -73,16 +93,36 @@
           "filter": "datum.year == year"
         },
         {
-          "calculate": "134",
+          "calculate": "datum.country == 'Malaysia' ? 'Malaysia' : 'Other countries'",
+          "as": "group"
+        },
+        {
+          "calculate": "datum.lon < -30 ? datum.lon + 360 : datum.lon",
+          "as": "olon"
+        },
+        {
+          "calculate": "datum.olon > 160 ? 'east' : (datum.olon < 60 ? 'west' : 'north')",
+          "as": "coast"
+        },
+        {
+          "calculate": "datum.coast == 'north' ? 118 + (min(max(datum.olon, 60), 145) - 60) / 85 * 28 : (datum.coast == 'east' ? 153 : 114.5)",
           "as": "dest_lon"
         },
         {
-          "calculate": "-25.5",
+          "calculate": "datum.coast == 'north' ? -16 : (datum.coast == 'east' ? -33 + (min(max(datum.lat, -35), 40) + 35) / 75 * 12 : -32 + (min(max(datum.lat, -35), 60) + 35) / 95 * 12)",
           "as": "dest_lat"
         },
         {
-          "calculate": "datum.country == 'Malaysia' ? 'Malaysia' : 'Other countries'",
-          "as": "group"
+          "calculate": "datum.country + ' ' + format(datum.students, '.3~s')",
+          "as": "label"
+        },
+        {
+          "calculate": "datum.lon + (datum.country == 'India' ? -4 : (datum.country == 'Bangladesh' ? 6.5 : 0))",
+          "as": "label_lon"
+        },
+        {
+          "calculate": "datum.lat + (datum.country == 'Nepal' ? 3.5 : (datum.country == 'India' ? -1.5 : 0))",
+          "as": "label_lat"
         }
       ],
       "layer": [
@@ -118,7 +158,7 @@
                 ],
                 "range": [
                   0.3,
-                  14
+                  11
                 ]
               },
               "legend": {
@@ -179,7 +219,15 @@
                 "type": "quantitative",
                 "title": "Rank among source countries"
               }
-            ]
+            ],
+            "opacity": {
+              "condition": {
+                "param": "hl",
+                "empty": true,
+                "value": 1
+              },
+              "value": 0.12
+            }
           },
           "transform": [
             {
@@ -228,6 +276,19 @@
             {
               "calculate": "pow(1-datum.u,2)*datum.lat + 2*(1-datum.u)*datum.u*datum.cy + pow(datum.u,2)*datum.dest_lat",
               "as": "lat_b"
+            }
+          ],
+          "params": [
+            {
+              "name": "hl",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "country"
+                ],
+                "on": "pointerover",
+                "clear": "pointerout"
+              }
             }
           ]
         },
@@ -281,6 +342,14 @@
               "field": "students",
               "type": "quantitative",
               "sort": "descending"
+            },
+            "opacity": {
+              "condition": {
+                "param": "hl",
+                "empty": true,
+                "value": 0.95
+              },
+              "value": 0.15
             }
           }
         },
@@ -301,15 +370,23 @@
           },
           "encoding": {
             "longitude": {
-              "field": "lon",
+              "field": "label_lon",
               "type": "quantitative"
             },
             "latitude": {
-              "field": "lat",
+              "field": "label_lat",
               "type": "quantitative"
             },
             "text": {
-              "field": "country"
+              "field": "label"
+            },
+            "opacity": {
+              "condition": {
+                "param": "hl",
+                "empty": true,
+                "value": 1
+              },
+              "value": 0.15
             }
           }
         },
@@ -327,19 +404,27 @@
           },
           "encoding": {
             "longitude": {
-              "field": "lon",
+              "field": "label_lon",
               "type": "quantitative"
             },
             "latitude": {
-              "field": "lat",
+              "field": "label_lat",
               "type": "quantitative"
             },
             "text": {
-              "field": "country"
+              "field": "label"
             },
             "color": {
               "field": "group",
               "type": "nominal"
+            },
+            "opacity": {
+              "condition": {
+                "param": "hl",
+                "empty": true,
+                "value": 1
+              },
+              "value": 0.15
             }
           }
         }
@@ -355,47 +440,25 @@
           }
         ]
       },
-      "layer": [
-        {
-          "mark": {
-            "type": "circle",
-            "size": 120,
-            "color": "#1F2A37"
-          },
-          "encoding": {
-            "longitude": {
-              "field": "lon",
-              "type": "quantitative"
-            },
-            "latitude": {
-              "field": "lat",
-              "type": "quantitative"
-            }
-          }
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#1F2A37"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
         },
-        {
-          "mark": {
-            "type": "text",
-            "dy": 18,
-            "fontSize": 12,
-            "fontWeight": 700,
-            "color": "#1F2A37"
-          },
-          "encoding": {
-            "longitude": {
-              "field": "lon",
-              "type": "quantitative"
-            },
-            "latitude": {
-              "field": "lat",
-              "type": "quantitative"
-            },
-            "text": {
-              "field": "label"
-            }
-          }
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
         }
-      ]
+      }
     }
   ]
 }

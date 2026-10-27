@@ -104,7 +104,7 @@
         "y": {
           "field": "students",
           "type": "quantitative",
-          "title": "Students",
+          "title": "Students (people)",
           "axis": {
             "format": "~s",
             "tickCount": 5

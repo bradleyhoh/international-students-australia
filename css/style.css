@@ -173,6 +173,20 @@ section.wrap { padding-top: 72px; }
   color: var(--muted);
 }
 
+/* unit tag above each chart title: students (people) vs enrolments (courses) */
+.unit {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.unit-stu { background: #E6E9EB; color: #3B4148; border: 1px solid #E6E9EB; }
+.unit-enr { background: transparent; color: #3B4148; border: 1px dashed #8A9299; }
+
 /* colour-coded words: match the chart colours so text can replace some legends */
 .c-my { color: var(--malaysia); font-weight: 700; }
 .c-teal { color: var(--teal); font-weight: 600; }
