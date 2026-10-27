@@ -63,7 +63,7 @@ const charts = [
 ];
 
 // bump this when files change so browsers fetch the new versions
-const VERSION = "12";
+const VERSION = "13";
 
 const options = {
   actions: { export: true, source: true, compiled: false, editor: true },

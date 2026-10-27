@@ -353,7 +353,7 @@ section.wrap { padding-top: 72px; }
 .kpi.k-teal { border-top-color: var(--teal); }
 .kpi.k-my { border-top-color: var(--malaysia); }
 .kpi.k-grey { border-top-color: #8A919C; }
-.kpi-arrow { font-weight: 400; color: var(--muted); }
+.kpi-arrow { font-weight: 400; color: inherit; } /* same colour as the numbers either side */
 
 /* chart + text rows where the chart needs more room than the text:
    the chart gets the wider column, the text sits in a narrower "rail"
@@ -419,6 +419,25 @@ section.wrap { padding-top: 72px; }
 .about { font-family: var(--sans); font-size: 0.98rem; color: var(--ink-soft); }
 .about h2 { font-family: var(--sans); }
 .about h3 { margin-top: 12px; color: var(--ink); }
+/* who / why / what / how: the purpose of the page, stated up front */
+.purpose {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin: 8px 0 32px;
+}
+.purpose > div { border-top: 3px solid var(--teal); padding-top: 10px; }
+.purpose dt {
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.purpose dd { margin: 0; line-height: 1.55; }
+@media (max-width: 900px) { .purpose { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .purpose { grid-template-columns: minmax(0, 1fr); } }
 .about ul { padding-left: 18px; }
 .about li { margin-bottom: 8px; }
 .about code { font-size: 0.9em; }
