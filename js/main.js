@@ -63,7 +63,7 @@ const charts = [
 ];
 
 // bump this when files change so browsers fetch the new versions
-const VERSION = "14";
+const VERSION = "15";
 
 const options = {
   actions: { export: true, source: true, compiled: false, editor: true },
@@ -275,9 +275,40 @@ const fontsReady = Promise.race([
   new Promise((resolve) => setTimeout(resolve, 2500))
 ]);
 
+// ---------- phone-width versions of the two world maps ----------
+// On a narrow screen a world map is short and wide, so the fixed 430 px height left
+// empty space and the labels and legends collided. These tweaks shrink the height to
+// the map's shape, keep only the key labels and stack the legend.
+const NARROW = 600;
+const narrowTweaks = {
+  "#vis04": (s, w) => {
+    s.height = Math.round(w * 0.62);
+    const flows = s.layer[3].layer;
+    [2, 3].forEach((i) => { flows[i].transform[0].filter = "datum.rank <= 2 || datum.country == 'Malaysia'"; });
+    flows[0].encoding.color.legend = null;            // the caption says Malaysia is red
+    flows[0].encoding.strokeWidth.legend.orient = "bottom";
+  },
+  "#vis05": (s, w) => {
+    s.height = Math.round(w * 0.5) + 70;
+    s.layer[1].encoding.color.legend.columns = 4;
+    Object.assign(s.layer[3].layer[0].mark, { align: "left", dx: 6 });
+  }
+};
+
+function loadSpec(sel, spec, el) {
+  const tweak = narrowTweaks[sel];
+  const w = el.clientWidth;
+  if (!tweak || w >= NARROW) return Promise.resolve(spec + "?v=" + VERSION);
+  return fetch(spec + "?v=" + VERSION).then((r) => r.json()).then((s) => {
+    try { tweak(s, w); } catch (e) { console.warn("narrow tweak skipped", sel, e); }
+    return s;
+  });
+}
+
 fontsReady.then(() => charts.forEach(([sel, spec, kind]) => {
   const el = document.querySelector(sel);
-  vegaEmbed(el, spec + "?v=" + VERSION, options)
+  loadSpec(sel, spec, el)
+    .then((src) => vegaEmbed(el, src, options))
     .then((result) => {
       if (sel === "#vis04") setUpPlay(result.view);
       // hide data marks until the chart is on screen, so the animation is seen

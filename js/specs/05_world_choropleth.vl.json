@@ -98,13 +98,14 @@
             ]
           },
           "legend": {
-            "orient": "bottom-left",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 7,
             "symbolType": "square",
             "symbolSize": 120,
             "titleLimit": 300,
             "labelFontSize": 11,
-            "fillColor": "rgba(255,255,255,0.9)",
-            "padding": 6,
+            "columnPadding": 14,
             "values": [
               "Under 5",
               "5\u201310",

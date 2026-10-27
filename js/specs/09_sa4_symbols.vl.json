@@ -270,18 +270,16 @@
           {
             "lon": 113.5,
             "lat": -39.2,
-            "t": "Two inner-city areas hold 43% of all enrolments."
-          },
-          {
-            "lon": 113.5,
-            "lat": -40.6,
-            "t": "Regional Australia hosts under 7%."
+            "t": "Two inner-city areas hold 43% of all enrolments.\nRegional Australia hosts under 7%."
           }
         ]
       },
       "mark": {
         "type": "text",
         "align": "left",
+        "baseline": "top",
+        "lineBreak": "\n",
+        "lineHeight": 17,
         "fontSize": 12,
         "color": "#1F2937"
       },

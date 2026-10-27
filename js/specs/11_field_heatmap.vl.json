@@ -32,9 +32,13 @@
       ],
       "axis": {
         "orient": "top",
-        "labelAngle": -35,
-        "labelAlign": "left",
-        "labelLimit": 170
+        "labelAngle": 0,
+        "labelAlign": "center",
+        "labelBaseline": "bottom",
+        "labelLineHeight": 14,
+        "labelPadding": 20,
+        "labelExpr": "datum.label == 'Agriculture & environment' ? ['Agriculture &', 'environment'] : datum.label == 'Society & culture' ? ['Society &', 'culture'] : datum.label == 'Creative arts' ? ['Creative', 'arts'] : ['', datum.label]",
+        "labelLimit": 120
       }
     },
     "y": {
