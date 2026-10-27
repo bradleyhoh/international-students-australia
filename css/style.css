@@ -70,8 +70,73 @@ strong { font-weight: 700; }
 .hero {
   background: var(--ink);
   color: #F3F4F5;
-  padding: 64px 0 48px;
+  padding: 64px 0 24px;
+  /* the opening screen fills the window; the content sits in its vertical centre */
+  min-height: 100vh;
+  min-height: 100svh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
+.hero-body {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* opening sequence: title, lead, numbers and byline rise in one after another */
+@keyframes heroUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes ruleGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.js .hero-in {
+  opacity: 0;
+  animation: heroUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s) forwards;
+}
+/* the coloured rule above each number draws in from the left */
+.js .stat { position: relative; border-top-color: transparent; }
+.js .stat::before {
+  content: "";
+  position: absolute;
+  top: -3px; left: 0; right: 0;
+  height: 3px;
+  background: #7FC1BE;
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: ruleGrow 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--d, 0s) + 0.15s) forwards;
+}
+.js .stat.malaysia::before { background: #F0505E; }
+
+/* "Scroll to explore" cue at the bottom of the opening screen */
+@keyframes cueBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+.scroll-cue {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 24px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #A3A9AE;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.scroll-cue:hover, .scroll-cue:focus-visible { color: #F3F4F5; }
+.scroll-cue svg { animation: cueBob 1.8s ease-in-out 2.2s infinite; }
 .kicker {
   font-family: var(--sans);
   font-weight: 600;
@@ -193,11 +258,11 @@ section.wrap { padding-top: 72px; }
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr);
   gap: 32px;
-  align-items: start;
+  align-items: center;
   margin-bottom: 24px;
 }
 .intro-row > .card { margin-bottom: 0; }
-.intro-text { padding-top: 6px; }
+.intro-text { padding: 0; }
 .intro-text .lede { margin-bottom: 0; }
 /* headline on the left, lead paragraph on the right, above a full-width chart */
 .head-split {
@@ -387,6 +452,9 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
+  .js .hero-in { opacity: 1; animation: none; }
+  .js .stat::before { transform: none; animation: none; }
+  .scroll-cue svg { animation: none; }
 }
 
 /* ---------- small screens ---------- */
@@ -398,4 +466,12 @@ footer {
   .takeaway-grid { grid-template-columns: minmax(0, 1fr); }
   .wrap { padding: 0 16px; }
   .card { padding: 16px 14px 12px; }
+}
+
+/* ---------- print: no full-screen opening or scroll cue ---------- */
+@media print {
+  .hero { min-height: 0; }
+  .scroll-cue { display: none; }
+  .js .hero-in { opacity: 1; animation: none; }
+  .js .stat::before { transform: none; animation: none; }
 }

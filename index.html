@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=11">
   <script>document.documentElement.classList.add("js");</script>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
@@ -18,16 +18,20 @@
 <body>
 
 <header class="hero">
-  <div class="wrap">
-    <h1>Destination Australia</h1>
-    <p class="dek">Twenty years of international students in Australia: who comes, where they study, what they study, and how Malaysia, once a top-four source country, has slipped to 13th.</p>
+  <div class="wrap hero-body">
+    <h1 class="hero-in" style="--d:0.1s">Destination Australia</h1>
+    <p class="dek hero-in" style="--d:0.35s">Twenty years of international students in Australia: who comes, where they study, what they study, and how Malaysia, once a top-four source country, has slipped to 13th.</p>
     <div class="stats">
-      <div class="stat"><span class="num" data-count="844299">844,299</span><span class="lbl">international students in Australia, Dec 2025</span></div>
-      <div class="stat"><span class="num" data-count="190" data-suffix="+">190+</span><span class="lbl">nationalities represented</span></div>
-      <div class="stat malaysia"><span class="num" data-count="14895">14,895</span><span class="lbl">Malaysians studying in Australia, 13th largest source</span></div>
+      <div class="stat hero-in" style="--d:0.6s"><span class="num" data-count="844299">844,299</span><span class="lbl">international students in Australia, Dec 2025</span></div>
+      <div class="stat hero-in" style="--d:0.72s"><span class="num" data-count="190" data-suffix="+">190+</span><span class="lbl">nationalities represented</span></div>
+      <div class="stat malaysia hero-in" style="--d:0.84s"><span class="num" data-count="14895">14,895</span><span class="lbl">Malaysians studying in Australia, 13th largest source</span></div>
     </div>
-    <p class="meta">By Bradley Hoh Lok Yew · October 2026 · Data to December 2025</p>
+    <p class="meta hero-in" style="--d:1.05s">By Bradley Hoh Lok Yew · October 2026 · Data to December 2025</p>
   </div>
+  <a class="scroll-cue hero-in" style="--d:1.4s" href="#growth" aria-label="Scroll to the first chart">
+    <span>Scroll to explore</span>
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
 </header>
 
 <nav class="toc" aria-label="Sections">
@@ -321,6 +325,6 @@
   <div class="wrap">By: Bradley Hoh Lok Yew</div>
 </footer>
 
-<script src="js/main.js?v=10"></script>
+<script src="js/main.js?v=11"></script>
 </body>
 </html>

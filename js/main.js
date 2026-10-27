@@ -63,7 +63,7 @@ const charts = [
 ];
 
 // bump this when files change so browsers fetch the new versions
-const VERSION = "10";
+const VERSION = "11";
 
 const options = {
   actions: { export: true, source: true, compiled: false, editor: true },
@@ -313,8 +313,89 @@ function countUp(node) {
 }
 
 if (!reduceMotion) {
-  document.querySelectorAll(".stat .num[data-count]").forEach(countUp);
+  // start each count as its number rises in (delay set by --d in the HTML)
+  document.querySelectorAll(".stat .num[data-count]").forEach((node) => {
+    const d = parseFloat(getComputedStyle(node.closest(".stat")).getPropertyValue("--d")) || 0;
+    node.textContent = "0";
+    setTimeout(() => countUp(node), d * 1000);
+  });
 }
+
+// ---------- opening screen: the first scroll glides down to the first chart ----------
+// The first downward scroll (wheel, swipe, arrow/page/space key, or the cue) is
+// turned into one smooth glide that stops with Part 1 just under the section menu.
+// It runs once; after that the page scrolls normally.
+
+(function setUpOpeningGlide() {
+  const hero = document.querySelector(".hero");
+  const cue = document.querySelector(".scroll-cue");
+  const first = document.querySelector("#growth .intro-row") || document.querySelector("#growth");
+  const nav = document.querySelector(".toc");
+  if (!hero || !first) return;
+
+  let armed = true;
+  let gliding = false;
+
+  function targetY() {
+    const navH = nav ? nav.offsetHeight : 0;
+    return Math.max(0, first.getBoundingClientRect().top + window.scrollY - navH - 28);
+  }
+
+  function glide() {
+    if (gliding) return;
+    armed = false;
+    const from = window.scrollY;
+    const to = targetY();
+    if (reduceMotion) { window.scrollTo(0, to); return; }
+    gliding = true;
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto"; // stop CSS smooth scrolling fighting the animation
+    const duration = Math.min(1300, 700 + Math.abs(to - from) * 0.4);
+    const start = performance.now();
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; // ease in-out cubic
+      window.scrollTo(0, from + (to - from) * e);
+      if (t < 1) { requestAnimationFrame(frame); return; }
+      root.style.scrollBehavior = prev;
+      gliding = false;
+      checkPending();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function shouldTake() { return armed && window.scrollY < targetY() - 4; }
+
+  // block competing input while the glide runs; take over the first downward scroll
+  window.addEventListener("wheel", (e) => {
+    if (gliding) { e.preventDefault(); return; }
+    if (e.deltaY > 0 && shouldTake()) { e.preventDefault(); glide(); }
+  }, { passive: false });
+
+  let touchY = null;
+  window.addEventListener("touchstart", (e) => { touchY = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener("touchmove", (e) => {
+    if (gliding) { e.preventDefault(); return; }
+    if (touchY !== null && touchY - e.touches[0].clientY > 8 && shouldTake()) { e.preventDefault(); glide(); }
+  }, { passive: false });
+
+  window.addEventListener("keydown", (e) => {
+    const tag = (e.target && e.target.tagName) || "";
+    if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+    const down = ["ArrowDown", "PageDown", " ", "Spacebar"].includes(e.key) && !e.shiftKey;
+    if (gliding && down) { e.preventDefault(); return; }
+    if (down && shouldTake()) { e.preventDefault(); glide(); }
+  });
+
+  if (cue) cue.addEventListener("click", (e) => { e.preventDefault(); glide(); });
+
+  // any other way past the opening screen (scrollbar, menu link, restored position) disarms it
+  window.addEventListener("scroll", () => {
+    if (!gliding && window.scrollY > hero.offsetHeight * 0.5) armed = false;
+  }, { passive: true });
+  window.addEventListener("load", () => { if (window.scrollY > 10) armed = false; });
+})();
 
 const revealTargets = document.querySelectorAll(".card, .side-text, .note, .next, .takeaways li");
 if (reduceMotion || !canObserve) {
