@@ -63,7 +63,7 @@ const charts = [
 ];
 
 // bump this when files change so browsers fetch the new versions
-const VERSION = "13";
+const VERSION = "14";
 
 const options = {
   actions: { export: true, source: true, compiled: false, editor: true },
@@ -329,7 +329,8 @@ if (!reduceMotion) {
 (function setUpOpeningGlide() {
   const hero = document.querySelector(".hero");
   const cue = document.querySelector(".scroll-cue");
-  const first = document.querySelector("#growth .intro-row") || document.querySelector("#growth");
+  // land on the opening question when it is shown, otherwise on Part 1
+  const first = document.querySelector(".hook-card") || document.querySelector("#growth .intro-row") || document.querySelector("#growth");
   const nav = document.querySelector(".toc");
   if (!hero || !first) return;
 
@@ -408,3 +409,33 @@ if (reduceMotion || !canObserve) {
   }, { threshold: 0.12 });
   revealTargets.forEach((n) => { n.classList.add("reveal"); io.observe(n); });
 }
+
+
+// ---------- opening question: guess Malaysia's rank, answered here and again in the takeaways ----------
+(function setUpGuess() {
+  const box = document.querySelector(".hook-options");
+  const answer = document.querySelector(".hook-answer");
+  const recap = document.querySelector(".guess-recap");
+  if (!box || !answer) return;
+  const ACTUAL = 13;
+  const ord = (n) => n + (n === 1 ? "st" : n === 2 ? "nd" : n === 3 ? "rd" : "th");
+
+  box.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-rank]");
+    if (!btn || btn.disabled) return;
+    const guess = Number(btn.dataset.rank);
+    box.querySelectorAll("button").forEach((b) => {
+      b.disabled = true;
+      if (Number(b.dataset.rank) === ACTUAL) b.classList.add("is-answer");
+    });
+    btn.classList.add("is-guess");
+    answer.innerHTML = guess === ACTUAL
+      ? "<strong>Right: 13th.</strong> Ten countries moved past Malaysia in twenty years. The five parts below show how it happened."
+      : "<strong>It is 13th</strong>, lower than your guess of " + ord(guess) + ". Ten countries moved past Malaysia in twenty years. The five parts below show how it happened.";
+    if (recap) {
+      recap.textContent = guess === ACTUAL
+        ? "You guessed 13th at the start, and you were right."
+        : "You guessed " + ord(guess) + " at the start; the answer was 13th.";
+    }
+  });
+})();

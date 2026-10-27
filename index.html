@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=13">
+  <link rel="stylesheet" href="css/style.css?v=14">
   <script>document.documentElement.classList.add("js");</script>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
@@ -20,11 +20,11 @@
 <header class="hero">
   <div class="wrap hero-body">
     <h1 class="hero-in" style="--d:0.1s">Destination Australia</h1>
-    <p class="dek hero-in" style="--d:0.35s">Twenty years of international students in Australia: who comes, where they study, what they study, and how Malaysia, once a top-four source country, has slipped to 13th.</p>
+    <p class="dek hero-in" style="--d:0.35s">Twenty years of international students in Australia: who comes, where they study, what they study, and what happened to Malaysia, once Australia's fourth-largest source of students.</p>
     <div class="stats">
       <div class="stat hero-in" style="--d:0.6s"><span class="num" data-count="844299">844,299</span><span class="lbl">international students in Australia, Dec 2025</span></div>
       <div class="stat hero-in" style="--d:0.72s"><span class="num" data-count="190" data-suffix="+">190+</span><span class="lbl">nationalities represented</span></div>
-      <div class="stat malaysia hero-in" style="--d:0.84s"><span class="num" data-count="14895">14,895</span><span class="lbl">Malaysians studying in Australia, 13th largest source</span></div>
+      <div class="stat malaysia hero-in" style="--d:0.84s"><span class="num" data-count="14895">14,895</span><span class="lbl">Malaysians studying in Australia, Dec 2025</span></div>
     </div>
     <p class="meta hero-in" style="--d:1.05s">By Bradley Hoh Lok Yew · October 2026 · Data to December 2025</p>
   </div>
@@ -47,12 +47,31 @@
 
 <main>
 
+  <!-- ===== Opening question (the story's hook; answered in the takeaways) ===== -->
+  <section class="wrap hook" aria-labelledby="hook-q">
+    <div class="hook-card">
+      <div class="hook-text">
+        <p class="hook-kicker">Before you start</p>
+        <h2 id="hook-q" class="hook-q">In 2005, Malaysia sent more students to Australia than all but three countries. Where do you think it ranks in 2025?</h2>
+      </div>
+      <div class="hook-act">
+      <div class="hook-options" role="group" aria-label="Your guess">
+        <button type="button" data-rank="4">Still 4th</button>
+        <button type="button" data-rank="7">7th</button>
+        <button type="button" data-rank="10">10th</button>
+        <button type="button" data-rank="13">13th</button>
+      </div>
+      <p class="hook-answer" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Section 1 ===== -->
   <section id="growth" class="wrap">
     <div class="intro-row">
       <div class="intro-text">
-        <h2>Almost three times as many students as in 2005</h2>
-        <p class="lede">In 2005 Australia hosted about 289,000 international students. By 2024 it had a record 851,000. The climb was not smooth: a slide after 2009, a long boom in the 2010s, and a sharp fall when Australia closed its borders during COVID-19.</p>
+        <h2>Almost three times as many students, but fewer Malaysians</h2>
+        <p class="lede">In 2005 Australia hosted about 289,000 international students. By 2024 it had a record 851,000. The climb was not smooth: a slide after 2009, a long boom in the 2010s, and a sharp fall when Australia closed its borders during COVID-19. Malaysians went the other way: fewer study in Australia today than in 2005.</p>
       </div>
       <figure class="card">
         <figcaption>
@@ -113,14 +132,14 @@
       <p class="source">Source: Department of Education, enrolments by sector, December 2018–2025.</p>
     </figure>
 
-    <p class="next">Malaysians are a shrinking part of a growing market. So who is filling the classrooms?</p>
+    <p class="next">Malaysia shrank while the market almost tripled. So who moved ahead of it?</p>
   </section>
 
   <!-- ===== Section 2 ===== -->
   <section id="origins" class="wrap">
     <div class="head-split">
-      <h2>From East Asia to South Asia</h2>
-      <p class="lede">China has been the largest source every year since 2005. What changed is who comes next: India, Nepal, Vietnam and the Philippines now follow it. Malaysia, a top-five source every year from 2005 to 2018, has fallen to 13th.</p>
+      <h2>Ten countries have overtaken Malaysia</h2>
+      <p class="lede">China and India have led throughout. Behind them, ten countries have moved past Malaysia since 2005, led by Nepal, Vietnam and the Philippines. Malaysia was a top-five source every year from 2005 to 2018; it is now 13th.</p>
     </div>
 
     <figure class="card">
@@ -179,14 +198,14 @@
       <p>Raw totals favour big countries. Dividing by population tells a different story: Bhutan sends 1,635 students per 100,000 people, about 40 times Malaysia's rate. For <span class="c-my">Malaysia</span>, about <strong>41 people in every 100,000</strong> are studying in Australia: above Indonesia (9) and India (10), but far below Singapore (113) and Nepal (237).</p>
     </div>
 
-    <p class="next">These totals describe the past. New arrivals show where things are heading.</p>
+    <p class="next">Totals count everyone already studying. To see whether the slide will continue, look at who is starting.</p>
   </section>
 
   <!-- ===== Section 3 ===== -->
   <section id="arrivals" class="wrap">
     <div class="head-split">
-      <h2>New arrivals have peaked for most countries</h2>
-      <p class="lede">New-student numbers show where the pipeline is heading. After a rebound in 2023, new arrivals fell in 2024 and 2025 for most large source countries. Malaysia's intake peaked earlier, in 2017, and is now at about 38% of that level.</p>
+      <h2>Malaysia missed the post-COVID rebound</h2>
+      <p class="lede">New students are the pipeline: each year's starters become the next few years' totals. Most large source countries had their biggest intake in 2022 or 2023, after the borders reopened, then fell in 2024 and 2025. Malaysia's intake peaked much earlier, in 2017 (8,189), reached only about half that in 2023, and was 3,116 in 2025: 38% of its peak. With fewer starting each year, the number of Malaysians studying in Australia has kept falling.</p>
     </div>
 
     <figure class="card">
@@ -199,7 +218,7 @@
       <p class="source">Source: Department of Education, International Student Data (new students), December 2005–2025.</p>
     </figure>
 
-    <p class="next">Once they arrive, where in Australia do they study?</p>
+    <p class="next">For the Malaysians who still come, where in Australia do they study?</p>
   </section>
 
   <!-- ===== Section 4 ===== -->
@@ -284,6 +303,7 @@
   <!-- ===== Takeaways ===== -->
   <section class="wrap takeaways">
     <h2>What this means for Malaysians</h2>
+    <p class="answer-recap">So how did Malaysia go from 4th to 13th? Three things happened together: the market almost tripled, ten faster-growing countries moved past it, and fewer Malaysians started courses after 2017.<span class="guess-recap"></span></p>
     <ol class="takeaway-grid">
       <li><span class="t-num c-my">13th</span><strong>Busier, but fewer Malaysians.</strong> Australia hosts almost three times as many international students as in 2005, yet fewer Malaysians than in 2005. Malaysia was a top-five source every year to 2018 and is 13th today.</li>
       <li><span class="t-num">4×</span><strong>A new mix of classmates.</strong> Since 2015, students from Bangladesh, Nepal and the Philippines have each grown more than fourfold, and South Asian countries are now among the fastest-growing sources.</li>
@@ -343,6 +363,6 @@
   <div class="wrap">By: Bradley Hoh Lok Yew</div>
 </footer>
 
-<script src="js/main.js?v=13"></script>
+<script src="js/main.js?v=14"></script>
 </body>
 </html>
