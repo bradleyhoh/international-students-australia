@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "International students in Australia, 2005-2025 (December head count) with new students and annotated turning points.",
+  "description": "International students in Australia, 2005–2025 (December head count) with new students and annotated turning points.",
   "width": "container",
   "height": 300,
   "data": {

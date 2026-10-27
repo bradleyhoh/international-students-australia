@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Small multiples: international enrolments by education sector, 2018-2025, each indexed to its own 2018 level (2018 = 100) and drawn on one shared scale so sectors can be compared directly.",
+  "description": "Small multiples: international enrolments by education sector, 2018–2025, each indexed to its own 2018 level (2018 = 100) and drawn on one shared scale so sectors can be compared directly.",
   "data": {
     "url": "data/sector_trend.csv",
     "format": {

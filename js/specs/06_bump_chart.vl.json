@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Bump chart: rank of today's ten largest source countries (plus Malaysia) among all source countries, 2005-2025. Hover a line to highlight it.",
+  "description": "Bump chart: rank of today's ten largest source countries (plus Malaysia) among all source countries, 2005–2025. Hover over a line to highlight it.",
   "width": "container",
   "height": 380,
   "data": {

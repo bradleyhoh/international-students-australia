@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Streamgraph: international students by the state or territory where they study, 2005-2025. The overall thickness is the national total; each band is one state.",
+  "description": "Streamgraph: international students by the state or territory where they study, 2005–2025. The overall thickness is the national total; each band is one state.",
   "width": "container",
   "height": 340,
   "layer": [

@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Origin-destination flow map: students travelling from the 30 largest source countries to Australia. Curved flows arrive on the side of Australia facing their origin, so they do not all pile onto one point; thin flows are drawn above thick ones (Jenny et al. 2018). Line width = students. Hover a flow or dot to isolate one country. Use the slider or Play to change the year.",
+  "description": "Origin-destination flow map: students travelling from the 30 largest source countries to Australia. Curved flows arrive on the side of Australia facing their origin, so they do not all pile onto one point; thin flows are drawn above thick ones (Jenny et al. 2018). Line width = students. Hover over a flow or dot to isolate one country. Use the slider or Play to change the year.",
   "width": "container",
   "height": 430,
   "params": [
